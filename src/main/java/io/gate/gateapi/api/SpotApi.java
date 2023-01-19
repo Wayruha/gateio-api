@@ -531,6 +531,10 @@ public class SpotApi {
         return localVarCall;
     }
 
+    public List<Ticker> listTickers(String currencyPair, String timezone) throws ApiException {
+        return listTickersWithHttpInfo(currencyPair, timezone).getData();
+    }
+
     public class APIlistTickersRequest {
         private String currencyPair;
         private String timezone;

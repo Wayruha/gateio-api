@@ -2780,6 +2780,10 @@ public class MarginApi {
         return localVarCall;
     }
 
+    public MarginBorrowable getMarginBorrowableData(String currency, String currencyPair) throws ApiException {
+        final ApiResponse<MarginBorrowable> localVarResp = getMarginBorrowableWithHttpInfo(currency, currencyPair);
+        return localVarResp.getData();
+    }
 
     private ApiResponse<MarginBorrowable> getMarginBorrowableWithHttpInfo(String currency, String currencyPair) throws ApiException {
         okhttp3.Call localVarCall = getMarginBorrowableValidateBeforeCall(currency, currencyPair, null);
@@ -2885,6 +2889,10 @@ public class MarginApi {
      */
     public APIgetMarginBorrowableRequest getMarginBorrowable(String currency) {
         return new APIgetMarginBorrowableRequest(currency);
+    }
+
+    public MarginBorrowable getMarginBorrowable(String currency, String currencyPair) throws ApiException {
+        return getMarginBorrowable(currency).currencyPair(currencyPair).execute();
     }
 
     /**

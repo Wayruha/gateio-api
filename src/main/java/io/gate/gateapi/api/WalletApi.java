@@ -1140,11 +1140,14 @@ public class WalletApi {
         return localVarCall;
     }
 
-
     private ApiResponse<List<WithdrawStatus>> listWithdrawStatusWithHttpInfo(String currency) throws ApiException {
         okhttp3.Call localVarCall = listWithdrawStatusValidateBeforeCall(currency, null);
         Type localVarReturnType = new TypeToken<List<WithdrawStatus>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    public List<WithdrawStatus> listWithdrawStatuses(String currency) throws ApiException {
+        return listWithdrawStatusWithHttpInfo(currency).getData();
     }
 
     private okhttp3.Call listWithdrawStatusAsync(String currency, final ApiCallback<List<WithdrawStatus>> _callback) throws ApiException {

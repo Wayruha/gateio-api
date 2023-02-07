@@ -203,6 +203,10 @@ public class Loan {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
 
      /**
      * Creation time
@@ -378,6 +382,10 @@ public class Loan {
     @javax.annotation.Nullable
     public String getLeft() {
         return left;
+    }
+
+    public void setLeft(String left) {
+        this.left = left;
     }
 
 

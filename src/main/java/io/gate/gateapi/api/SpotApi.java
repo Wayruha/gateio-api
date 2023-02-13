@@ -1935,7 +1935,7 @@ public class SpotApi {
         return localVarCall;
     }
 
-    private okhttp3.Call listOrdersCall(String currencyPair, String status, Integer page, Integer limit, String account, Long from, Long to, String side, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listOrdersCall(String currencyPair, OrderStatus status, Integer page, Integer limit, String account, Long from, Long to, String side, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1997,7 +1997,7 @@ public class SpotApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listOrdersValidateBeforeCall(String currencyPair, String status, Integer page, Integer limit, String account, Long from, Long to, String side, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listOrdersValidateBeforeCall(String currencyPair, OrderStatus status, Integer page, Integer limit, String account, Long from, Long to, String side, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'currencyPair' is set
         if (currencyPair == null) {
             throw new ApiException("Missing the required parameter 'currencyPair' when calling listOrders(Async)");
@@ -2013,13 +2013,13 @@ public class SpotApi {
     }
 
 
-    private ApiResponse<List<Order>> listOrdersWithHttpInfo(String currencyPair, String status, Integer page, Integer limit, String account, Long from, Long to, String side) throws ApiException {
+    private ApiResponse<List<Order>> listOrdersWithHttpInfo(String currencyPair, OrderStatus status, Integer page, Integer limit, String account, Long from, Long to, String side) throws ApiException {
         okhttp3.Call localVarCall = listOrdersValidateBeforeCall(currencyPair, status, page, limit, account, from, to, side, null);
         Type localVarReturnType = new TypeToken<List<Order>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call listOrdersAsync(String currencyPair, String status, Integer page, Integer limit, String account, Long from, Long to, String side, final ApiCallback<List<Order>> _callback) throws ApiException {
+    private okhttp3.Call listOrdersAsync(String currencyPair, OrderStatus status, Integer page, Integer limit, String account, Long from, Long to, String side, final ApiCallback<List<Order>> _callback) throws ApiException {
         okhttp3.Call localVarCall = listOrdersValidateBeforeCall(currencyPair, status, page, limit, account, from, to, side, _callback);
         Type localVarReturnType = new TypeToken<List<Order>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
@@ -2028,7 +2028,7 @@ public class SpotApi {
 
     public class APIlistOrdersRequest {
         private final String currencyPair;
-        private final String status;
+        private final OrderStatus status;
         private Integer page;
         private Integer limit;
         private String account;
@@ -2036,7 +2036,7 @@ public class SpotApi {
         private Long to;
         private String side;
 
-        private APIlistOrdersRequest(String currencyPair, String status) {
+        private APIlistOrdersRequest(String currencyPair, OrderStatus status) {
             this.currencyPair = currencyPair;
             this.status = status;
         }
@@ -2159,6 +2159,23 @@ public class SpotApi {
         public okhttp3.Call executeAsync(final ApiCallback<List<Order>> _callback) throws ApiException {
             return listOrdersAsync(currencyPair, status, page, limit, account, from, to, side, _callback);
         }
+
+    }
+
+    public enum OrderStatus {
+        FINISHED("finished"),
+        OPEN("open");
+
+        private String code;
+
+        OrderStatus(String code) {
+            this.code = code;
+        }
+
+        @Override
+        public String toString() {
+            return code;
+        }
     }
 
     /**
@@ -2173,8 +2190,13 @@ public class SpotApi {
         <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
      </table>
      */
-    public APIlistOrdersRequest listOrders(String currencyPair, String status) {
+    public APIlistOrdersRequest listOrdersRequest(String currencyPair, OrderStatus status) {
         return new APIlistOrdersRequest(currencyPair, status);
+    }
+
+    public List<Order> listOrders(APIlistOrdersRequest request) throws ApiException {
+        final ApiResponse<List<Order>> resp = listOrdersWithHttpInfo(request.currencyPair, request.status, request.page, request.limit, request.account, request.from, request.to, request.side);
+        return resp.getData();
     }
 
     /**

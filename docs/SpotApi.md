@@ -965,11 +965,11 @@ Spot and margin orders are returned by default. If cross margin orders are neede
 
 ```java
 // Import classes:
+
 import io.gate.gateapi.ApiClient;
 import io.gate.gateapi.ApiException;
 import io.gate.gateapi.Configuration;
 import io.gate.gateapi.GateApiException;
-import io.gate.gateapi.auth.*;
 import io.gate.gateapi.models.*;
 import io.gate.gateapi.api.SpotApi;
 
@@ -977,7 +977,7 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.gateio.ws/api/v4");
-        
+
         // Configure APIv4 authorization: apiv4
         defaultClient.setApiKeySecret("YOUR_API_KEY", "YOUR_API_SECRET");
 
@@ -991,14 +991,14 @@ public class Example {
         Long to = 1635329650L; // Long | Time range ending, default to current time
         String side = "sell"; // String | All bids or asks. Both included if not specified
         try {
-            List<Order> result = apiInstance.listOrders(currencyPair, status)
-                        .page(page)
-                        .limit(limit)
-                        .account(account)
-                        .from(from)
-                        .to(to)
-                        .side(side)
-                        .execute();
+            List<Order> result = apiInstance.listOrdersRequest(currencyPair, status)
+                    .page(page)
+                    .limit(limit)
+                    .account(account)
+                    .from(from)
+                    .to(to)
+                    .side(side)
+                    .execute();
             System.out.println(result);
         } catch (GateApiException e) {
             System.err.println(String.format("Gate api exception, label: %s, message: %s", e.getErrorLabel(), e.getMessage()));

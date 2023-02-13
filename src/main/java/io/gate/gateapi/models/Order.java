@@ -109,7 +109,9 @@ public class Order {
      */
     @JsonAdapter(TypeEnum.Adapter.class)
     public enum TypeEnum {
-        LIMIT("limit");
+        LIMIT("limit"),
+
+        MARKET("market");
 
         private String value;
 

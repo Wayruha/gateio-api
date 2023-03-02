@@ -1548,6 +1548,10 @@ public class SpotApi {
         return new APIlistSpotAccountsRequest();
     }
 
+    public List<SpotAccount>  listSpotAccounts(APIlistSpotAccountsRequest request) throws ApiException {
+        return listSpotAccountsWithHttpInfo(request.currency).getData();
+    }
+
     /**
      * Build call for createBatchOrders
      * @param order  (required)

@@ -2004,6 +2004,10 @@ public class WalletApi {
         return new APIlistSavedAddressRequest(currency);
     }
 
+    public List<SavedAddress> listSavedAddress(APIlistSavedAddressRequest request) throws ApiException {
+        return listSavedAddressWithHttpInfo(request.currency, request.chain, request.limit).getData();
+    }
+
     private okhttp3.Call getTradeFeeCall(String currencyPair, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 

@@ -527,6 +527,10 @@ public class MarginApi {
         return new APIlistMarginAccountsRequest();
     }
 
+    public List<MarginAccount> listMarginAccounts(APIlistMarginAccountsRequest request) throws ApiException {
+        return listMarginAccountsWithHttpInfo(request.currencyPair).getData();
+    }
+
     private okhttp3.Call listMarginAccountBookCall(String currency, String currencyPair, Long from, Long to, Integer page, Integer limit, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 

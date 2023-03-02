@@ -98,14 +98,20 @@ if(hasProperty('target') && target == 'android') {
 }
 
 dependencies {
-    compile "com.google.code.findbugs:jsr305:3.0.2"
-    compile 'com.squareup.okhttp3:okhttp:3.14.7'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.14.7'
-    compile 'com.google.code.gson:gson:2.8.6'
-    compile 'io.gsonfire:gson-fire:1.8.4'
-    compile 'commons-codec:commons-codec:1.14'
-    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.10'
-    testCompile 'junit:junit:4.13'
+    implementation "com.google.code.findbugs:jsr305:3.0.2"
+    implementation 'com.squareup.okhttp3:okhttp:3.14.7'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.14.7'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'io.gsonfire:gson-fire:1.8.4'
+    implementation 'commons-codec:commons-codec:1.14'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.10'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version:'2.9.5'
+    implementation group: 'io.netty', name: 'netty-all', version:'4.1.36.Final'
+    implementation group: 'com.alibaba', name: 'fastjson', version:'1.2.59'
+    implementation group: 'com.google.guava', name: 'guava', version:'27.1-jre'
+    annotationProcessor 'org.projectlombok:lombok:1.18.4'
+    implementation group: 'org.projectlombok', name: 'lombok', version:'1.18.4'
+    testImplementation 'junit:junit:4.13'
 }
 
 javadoc {

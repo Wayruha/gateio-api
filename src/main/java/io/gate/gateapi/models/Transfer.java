@@ -17,11 +17,14 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import lombok.ToString;
+
 import java.io.IOException;
 
 /**
  * Accounts available to transfer:  - &#x60;spot&#x60;: spot account - &#x60;margin&#x60;: margin account - &#x60;futures&#x60;: perpetual futures account - &#x60;delivery&#x60;: delivery futures account - &#x60;cross_margin&#x60;: cross margin account - &#x60;options&#x60;: options account
  */
+@ToString
 public class Transfer {
     public static final String SERIALIZED_NAME_CURRENCY = "currency";
     @SerializedName(SERIALIZED_NAME_CURRENCY)
@@ -293,21 +296,6 @@ public class Transfer {
     @Override
     public int hashCode() {
         return Objects.hash(currency, from, to, amount, currencyPair, settle);
-    }
-
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class Transfer {\n");
-        sb.append("      currency: ").append(toIndentedString(currency)).append("\n");
-        sb.append("      from: ").append(toIndentedString(from)).append("\n");
-        sb.append("      to: ").append(toIndentedString(to)).append("\n");
-        sb.append("      amount: ").append(toIndentedString(amount)).append("\n");
-        sb.append("      currencyPair: ").append(toIndentedString(currencyPair)).append("\n");
-        sb.append("      settle: ").append(toIndentedString(settle)).append("\n");
-        sb.append("}");
-        return sb.toString();
     }
 
     /**

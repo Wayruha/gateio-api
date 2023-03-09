@@ -2629,6 +2629,10 @@ public class MarginApi {
         return localVarCall;
     }
 
+    public MarginTransferable getMaxMarginTransferable(String currency, String isolatedPair) throws ApiException {
+        final ApiResponse<MarginTransferable> response = getMarginTransferableWithHttpInfo(currency, isolatedPair);
+        return response.getData();
+    }
 
     private ApiResponse<MarginTransferable> getMarginTransferableWithHttpInfo(String currency, String currencyPair) throws ApiException {
         okhttp3.Call localVarCall = getMarginTransferableValidateBeforeCall(currency, currencyPair, null);

@@ -1,17 +1,12 @@
 package io.gate.gateapi.websocket;
 
-import com.alibaba.fastjson.annotation.JSONCreator;
-import com.alibaba.fastjson.annotation.JSONField;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.gate.gateapi.websocket.response.SpotOrderBookUpdate;
-import org.apache.commons.lang3.math.NumberUtils;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.Arrays;
 
 @JsonAdapter(WSChannel.WSChannelAdapter.class)
@@ -23,7 +18,9 @@ public enum WSChannel {
     @SerializedName("spot.cross_balances")
     CROSS_MARGIN_BALANCES("spot.cross_balances"),
     @SerializedName("spot.cross_loan")
-    CROSS_MARGIN_LOAN("spot.cross_loan");
+    CROSS_MARGIN_LOAN("spot.cross_loan"),
+    @SerializedName("spot.ping")
+    PING("spot.ping");
 
     private String code;
 

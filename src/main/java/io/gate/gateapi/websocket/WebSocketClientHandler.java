@@ -11,6 +11,9 @@ import io.netty.util.CharsetUtil;
 import java.util.zip.Inflater;
 
 public class WebSocketClientHandler<T> extends SimpleChannelInboundHandler<Object> {
+    private static final String PONG_MSG_PATTERN = "\"channel\":\"spot.pong\"";
+    private static final String RESULT_MSG_PATTERN = "\"result\":[{";
+
     private ChannelPromise handshakeFuture;
     private final WebSocketClientHandshaker handshaker;
     private WebSocketClient<T> webSocketClient;
@@ -50,7 +53,7 @@ public class WebSocketClientHandler<T> extends SimpleChannelInboundHandler<Objec
         } else if (frame instanceof BinaryWebSocketFrame) {
             //这里处理收到的逻辑
             String msgStr = decode(msg);
-            if (msgStr.equals("pong")) {
+            if (msgStr.contains(PONG_MSG_PATTERN)) {
                 webSocketClient.listener.onWebsocketPong(webSocketClient);
             } else {
                 BinaryWebSocketFrame binaryWebSocketFrame = (BinaryWebSocketFrame) frame;
@@ -58,12 +61,13 @@ public class WebSocketClientHandler<T> extends SimpleChannelInboundHandler<Objec
             }
         } else if (frame instanceof TextWebSocketFrame) {
             String txt = ((TextWebSocketFrame) frame).text();
-            if (txt.equals("pong")) {
+            if (txt.contains(PONG_MSG_PATTERN)) {
                 webSocketClient.listener.onWebsocketPong(webSocketClient);
-            } else if (txt.contains("\"result\":[{")) {
+            } else if (txt.contains(RESULT_MSG_PATTERN)) {
                 webSocketClient.listener.onResponse(webSocketClient, parseResponse(txt, webSocketClient.listener.getType()));
+            } else {
+                webSocketClient.listener.onText(webSocketClient, txt);
             }
-            webSocketClient.listener.onText(webSocketClient, txt);
         } else {
             webSocketClient.listener.handleCallbackError(webSocketClient, new RuntimeException("cannot decode message"));
         }

@@ -178,7 +178,11 @@ public class WebSocketClient<T> implements WebSocket {
 
     @Override
     public void sendPing() {
-        this.send("spot.ping");
+        final SubscriptionRequest request = new SubscriptionRequest();
+        final long timestamp = System.currentTimeMillis() / 1000;
+        request.setTime(timestamp);
+        request.setChannel(WSChannel.PING);
+        this.send(request);
     }
 
     @Override
@@ -272,6 +276,6 @@ public class WebSocketClient<T> implements WebSocket {
     }
 
     private void timerTask() {
-        this.send("spot.ping");
+        sendPing();
     }
 }

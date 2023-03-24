@@ -1,5 +1,6 @@
 package io.gate.gateapi.websocket.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -17,6 +18,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SpotOrderBookUpdate {
     @SerializedName("t")
     private String timestamp;

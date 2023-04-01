@@ -20,27 +20,7 @@ import io.gate.gateapi.Pair;
 import com.google.gson.reflect.TypeToken;
 
 
-import io.gate.gateapi.models.AutoRepaySetting;
-import io.gate.gateapi.models.CrossMarginAccount;
-import io.gate.gateapi.models.CrossMarginAccountBook;
-import io.gate.gateapi.models.CrossMarginBorrowable;
-import io.gate.gateapi.models.CrossMarginCurrency;
-import io.gate.gateapi.models.CrossMarginLoan;
-import io.gate.gateapi.models.CrossMarginRepayRequest;
-import io.gate.gateapi.models.CrossMarginRepayment;
-import io.gate.gateapi.models.CrossMarginTransferable;
-import io.gate.gateapi.models.FundingAccount;
-import io.gate.gateapi.models.FundingBookItem;
-import io.gate.gateapi.models.Loan;
-import io.gate.gateapi.models.LoanPatch;
-import io.gate.gateapi.models.LoanRecord;
-import io.gate.gateapi.models.MarginAccount;
-import io.gate.gateapi.models.MarginAccountBook;
-import io.gate.gateapi.models.MarginBorrowable;
-import io.gate.gateapi.models.MarginCurrencyPair;
-import io.gate.gateapi.models.MarginTransferable;
-import io.gate.gateapi.models.RepayRequest;
-import io.gate.gateapi.models.Repayment;
+import io.gate.gateapi.models.*;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -953,6 +933,46 @@ public class MarginApi {
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    private okhttp3.Call listUniLoansCall(String currency, String currencyPair, Integer page, Integer limit, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/margin/uni/loans";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        localVarQueryParams.addAll(localVarApiClient.parameterToPair("currency", currency));
+
+        localVarQueryParams.addAll(localVarApiClient.parameterToPair("currency_pair", currencyPair));
+
+        if (page != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page", page));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "apiv4" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, new HashMap<>(), localVarFormParams, localVarAuthNames, _callback);
+    }
+
     @SuppressWarnings("rawtypes")
     private okhttp3.Call listLoansValidateBeforeCall(String status, String side, String currency, String currencyPair, String sortBy, Boolean reverseSort, Integer page, Integer limit, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'status' is set
@@ -972,6 +992,16 @@ public class MarginApi {
 
     private ApiResponse<List<Loan>> listLoansWithHttpInfo(String status, String side, String currency, String currencyPair, String sortBy, Boolean reverseSort, Integer page, Integer limit) throws ApiException {
         okhttp3.Call localVarCall = listLoansValidateBeforeCall(status, side, currency, currencyPair, sortBy, reverseSort, page, limit, null);
+        Type localVarReturnType = new TypeToken<List<Loan>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    public List<UniLoan> listUniLoans(String currency, String currencyPair) throws ApiException {
+        return listUniLoansWithHttpInfo(currency, currencyPair).getData();
+    }
+
+    public ApiResponse<List<UniLoan>> listUniLoansWithHttpInfo(String currency, String currencyPair) throws ApiException {
+        okhttp3.Call localVarCall = listUniLoansCall(currency, currencyPair, null, null, null);
         Type localVarReturnType = new TypeToken<List<Loan>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -1175,6 +1205,35 @@ public class MarginApi {
         return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    public okhttp3.Call createUniLoanCall(BorrowRepayReq loan, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = loan;
+
+        // create path and map variables
+        String localVarPath = "/margin/uni/loans";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+                "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "apiv4" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
     @SuppressWarnings("rawtypes")
     private okhttp3.Call createLoanValidateBeforeCall(Loan loan, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'loan' is set
@@ -1201,6 +1260,16 @@ public class MarginApi {
     public Loan createLoan(Loan loan) throws ApiException {
         ApiResponse<Loan> localVarResp = createLoanWithHttpInfo(loan);
         return localVarResp.getData();
+    }
+
+    public Void createUniLoan(BorrowRepayReq req) throws ApiException {
+        return createUniLoanWithHttpInfo(req).getData();
+    }
+
+    public ApiResponse<Void> createUniLoanWithHttpInfo(BorrowRepayReq req) throws ApiException {
+        okhttp3.Call localVarCall = createUniLoanCall(req, null);
+        Type localVarReturnType = new TypeToken<Void>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**

@@ -10,18 +10,21 @@
 
 package io.gate.gateapi.models;
 
-import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import java.io.IOException;
 
 /**
  * Spot order details
  */
+@ToString
+@EqualsAndHashCode
 public class Order {
     public static final String SERIALIZED_NAME_ID = "id";
     @SerializedName(SERIALIZED_NAME_ID)
@@ -750,83 +753,8 @@ public class Order {
         return rebatedFeeCurrency;
     }
 
-    @Override
-    public boolean equals(java.lang.Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Order order = (Order) o;
-        return Objects.equals(this.id, order.id) &&
-                Objects.equals(this.text, order.text) &&
-                Objects.equals(this.createTime, order.createTime) &&
-                Objects.equals(this.updateTime, order.updateTime) &&
-                Objects.equals(this.createTimeMs, order.createTimeMs) &&
-                Objects.equals(this.updateTimeMs, order.updateTimeMs) &&
-                Objects.equals(this.status, order.status) &&
-                Objects.equals(this.currencyPair, order.currencyPair) &&
-                Objects.equals(this.type, order.type) &&
-                Objects.equals(this.account, order.account) &&
-                Objects.equals(this.side, order.side) &&
-                Objects.equals(this.amount, order.amount) &&
-                Objects.equals(this.price, order.price) &&
-                Objects.equals(this.timeInForce, order.timeInForce) &&
-                Objects.equals(this.iceberg, order.iceberg) &&
-                Objects.equals(this.autoBorrow, order.autoBorrow) &&
-                Objects.equals(this.autoRepay, order.autoRepay) &&
-                Objects.equals(this.left, order.left) &&
-                Objects.equals(this.fillPrice, order.fillPrice) &&
-                Objects.equals(this.filledTotal, order.filledTotal) &&
-                Objects.equals(this.fee, order.fee) &&
-                Objects.equals(this.feeCurrency, order.feeCurrency) &&
-                Objects.equals(this.pointFee, order.pointFee) &&
-                Objects.equals(this.gtFee, order.gtFee) &&
-                Objects.equals(this.gtDiscount, order.gtDiscount) &&
-                Objects.equals(this.rebatedFee, order.rebatedFee) &&
-                Objects.equals(this.rebatedFeeCurrency, order.rebatedFeeCurrency);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, text, createTime, updateTime, createTimeMs, updateTimeMs, status, currencyPair, type, account, side, amount, price, timeInForce, iceberg, autoBorrow, autoRepay, left, fillPrice, filledTotal, fee, feeCurrency, pointFee, gtFee, gtDiscount, rebatedFee, rebatedFeeCurrency);
-    }
-
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class Order {\n");
-        sb.append("      id: ").append(toIndentedString(id)).append("\n");
-        sb.append("      text: ").append(toIndentedString(text)).append("\n");
-        sb.append("      createTime: ").append(toIndentedString(createTime)).append("\n");
-        sb.append("      updateTime: ").append(toIndentedString(updateTime)).append("\n");
-        sb.append("      createTimeMs: ").append(toIndentedString(createTimeMs)).append("\n");
-        sb.append("      updateTimeMs: ").append(toIndentedString(updateTimeMs)).append("\n");
-        sb.append("      status: ").append(toIndentedString(status)).append("\n");
-        sb.append("      currencyPair: ").append(toIndentedString(currencyPair)).append("\n");
-        sb.append("      type: ").append(toIndentedString(type)).append("\n");
-        sb.append("      account: ").append(toIndentedString(account)).append("\n");
-        sb.append("      side: ").append(toIndentedString(side)).append("\n");
-        sb.append("      amount: ").append(toIndentedString(amount)).append("\n");
-        sb.append("      price: ").append(toIndentedString(price)).append("\n");
-        sb.append("      timeInForce: ").append(toIndentedString(timeInForce)).append("\n");
-        sb.append("      iceberg: ").append(toIndentedString(iceberg)).append("\n");
-        sb.append("      autoBorrow: ").append(toIndentedString(autoBorrow)).append("\n");
-        sb.append("      autoRepay: ").append(toIndentedString(autoRepay)).append("\n");
-        sb.append("      left: ").append(toIndentedString(left)).append("\n");
-        sb.append("      fillPrice: ").append(toIndentedString(fillPrice)).append("\n");
-        sb.append("      filledTotal: ").append(toIndentedString(filledTotal)).append("\n");
-        sb.append("      fee: ").append(toIndentedString(fee)).append("\n");
-        sb.append("      feeCurrency: ").append(toIndentedString(feeCurrency)).append("\n");
-        sb.append("      pointFee: ").append(toIndentedString(pointFee)).append("\n");
-        sb.append("      gtFee: ").append(toIndentedString(gtFee)).append("\n");
-        sb.append("      gtDiscount: ").append(toIndentedString(gtDiscount)).append("\n");
-        sb.append("      rebatedFee: ").append(toIndentedString(rebatedFee)).append("\n");
-        sb.append("      rebatedFeeCurrency: ").append(toIndentedString(rebatedFeeCurrency)).append("\n");
-        sb.append("}");
-        return sb.toString();
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**

@@ -211,21 +211,13 @@ public class WithdrawStatus {
         this.withdrawDayLimit = withdrawDayLimit;
     }
 
-    public WithdrawStatus withdrawAmountMini(String withdrawAmountMini) {
-        
-        this.withdrawAmountMini = withdrawAmountMini;
-        return this;
-    }
-
      /**
      * Minimum withdrawal amount
-     * @return withdrawAmountMini
     **/
     @javax.annotation.Nullable
     public String getWithdrawAmountMini() {
         return withdrawAmountMini;
     }
-
 
     public void setWithdrawAmountMini(String withdrawAmountMini) {
         this.withdrawAmountMini = withdrawAmountMini;

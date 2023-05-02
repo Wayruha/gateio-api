@@ -15,16 +15,14 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.Data;
 
 import java.io.IOException;
 
 /**
  * Spot order details
  */
-@ToString
-@EqualsAndHashCode
+@Data
 public class Order {
     public static final String SERIALIZED_NAME_ID = "id";
     @SerializedName(SERIALIZED_NAME_ID)
@@ -56,9 +54,9 @@ public class Order {
     @JsonAdapter(StatusEnum.Adapter.class)
     public enum StatusEnum {
         OPEN("open"),
-        
+
         CLOSED("closed"),
-        
+
         CANCELLED("cancelled");
 
         private String value;
@@ -159,14 +157,14 @@ public class Order {
     private TypeEnum type = TypeEnum.LIMIT;
 
     /**
-     * Account type. spot - use spot account; margin - use margin account; cross_margin - use cross margin account. Portfolio margin account must set to &#x60;cross-margin&#x60; 
+     * Account type. spot - use spot account; margin - use margin account; cross_margin - use cross margin account. Portfolio margin account must set to &#x60;cross-margin&#x60;
      */
     @JsonAdapter(AccountEnum.Adapter.class)
     public enum AccountEnum {
         SPOT("spot"),
-        
+
         MARGIN("margin"),
-        
+
         CROSS_MARGIN("cross_margin");
 
         private String value;
@@ -217,7 +215,7 @@ public class Order {
     @JsonAdapter(SideEnum.Adapter.class)
     public enum SideEnum {
         BUY("buy"),
-        
+
         SELL("sell");
 
         private String value;
@@ -276,11 +274,11 @@ public class Order {
     @JsonAdapter(TimeInForceEnum.Adapter.class)
     public enum TimeInForceEnum {
         GTC("gtc"),
-        
+
         IOC("ioc"),
-        
+
         POC("poc"),
-        
+
         FOK("fok");
 
         private String value;
@@ -349,6 +347,9 @@ public class Order {
     @SerializedName(SERIALIZED_NAME_FILLED_TOTAL)
     private String filledTotal;
 
+    @SerializedName("avg_deal_price")
+    private String averagePrice;
+
     public static final String SERIALIZED_NAME_FEE = "fee";
     @SerializedName(SERIALIZED_NAME_FEE)
     private String fee;
@@ -389,14 +390,13 @@ public class Order {
 
 
     public Order text(String text) {
-        
+
         this.text = text;
         return this;
     }
 
      /**
-     * User defined information. If not empty, must follow the rules below:  1. prefixed with &#x60;t-&#x60; 2. no longer than 28 bytes without &#x60;t-&#x60; prefix 3. can only include 0-9, A-Z, a-z, underscore(_), hyphen(-) or dot(.) 
-     * @return text
+     * User defined information. If not empty, must follow the rules below:  1. prefixed with &#x60;t-&#x60; 2. no longer than 28 bytes without &#x60;t-&#x60; prefix 3. can only include 0-9, A-Z, a-z, underscore(_), hyphen(-) or dot(.)
     **/
     @javax.annotation.Nullable
     public String getText() {
@@ -459,7 +459,7 @@ public class Order {
 
 
     public Order currencyPair(String currencyPair) {
-        
+
         this.currencyPair = currencyPair;
         return this;
     }
@@ -478,7 +478,7 @@ public class Order {
     }
 
     public Order type(TypeEnum type) {
-        
+
         this.type = type;
         return this;
     }
@@ -498,13 +498,13 @@ public class Order {
     }
 
     public Order account(AccountEnum account) {
-        
+
         this.account = account;
         return this;
     }
 
      /**
-     * Account type. spot - use spot account; margin - use margin account; cross_margin - use cross margin account. Portfolio margin account must set to &#x60;cross-margin&#x60; 
+     * Account type. spot - use spot account; margin - use margin account; cross_margin - use cross margin account. Portfolio margin account must set to &#x60;cross-margin&#x60;
      * @return account
     **/
     @javax.annotation.Nullable
@@ -518,7 +518,7 @@ public class Order {
     }
 
     public Order side(SideEnum side) {
-        
+
         this.side = side;
         return this;
     }
@@ -537,7 +537,7 @@ public class Order {
     }
 
     public Order amount(String amount) {
-        
+
         this.amount = amount;
         return this;
     }
@@ -556,7 +556,7 @@ public class Order {
     }
 
     public Order price(String price) {
-        
+
         this.price = price;
         return this;
     }
@@ -575,7 +575,7 @@ public class Order {
     }
 
     public Order timeInForce(TimeInForceEnum timeInForce) {
-        
+
         this.timeInForce = timeInForce;
         return this;
     }
@@ -595,7 +595,7 @@ public class Order {
     }
 
     public Order iceberg(String iceberg) {
-        
+
         this.iceberg = iceberg;
         return this;
     }
@@ -615,7 +615,7 @@ public class Order {
     }
 
     public Order autoBorrow(Boolean autoBorrow) {
-        
+
         this.autoBorrow = autoBorrow;
         return this;
     }
@@ -635,7 +635,7 @@ public class Order {
     }
 
     public Order autoRepay(Boolean autoRepay) {
-        
+
         this.autoRepay = autoRepay;
         return this;
     }

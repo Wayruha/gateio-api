@@ -16,6 +16,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import lombok.Data;
+import lombok.Setter;
 
 import java.io.IOException;
 
@@ -26,6 +27,7 @@ import java.io.IOException;
 public class Order {
     public static final String SERIALIZED_NAME_ID = "id";
     @SerializedName(SERIALIZED_NAME_ID)
+    @Setter
     private String id;
 
     public static final String SERIALIZED_NAME_TEXT = "text";

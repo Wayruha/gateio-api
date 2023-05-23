@@ -1939,7 +1939,7 @@ public class SpotApi {
         return localVarCall;
     }
 
-    private okhttp3.Call listOrdersCall(String currencyPair, OrderStatus status, Integer page, Integer limit, String account, Long from, Long to, String side, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listOrdersCall(String currencyPair, OrderStatus status, Integer page, Integer limit, Order.AccountEnum account, Long from, Long to, String side, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1964,7 +1964,7 @@ public class SpotApi {
         }
 
         if (account != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("account", account));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("account", account.getValue()));
         }
 
         if (from != null) {
@@ -2001,7 +2001,7 @@ public class SpotApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call listOrdersValidateBeforeCall(String currencyPair, OrderStatus status, Integer page, Integer limit, String account, Long from, Long to, String side, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call listOrdersValidateBeforeCall(String currencyPair, OrderStatus status, Integer page, Integer limit, Order.AccountEnum account, Long from, Long to, String side, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'currencyPair' is set
         if (currencyPair == null) {
             throw new ApiException("Missing the required parameter 'currencyPair' when calling listOrders(Async)");
@@ -2017,13 +2017,13 @@ public class SpotApi {
     }
 
 
-    private ApiResponse<List<Order>> listOrdersWithHttpInfo(String currencyPair, OrderStatus status, Integer page, Integer limit, String account, Long from, Long to, String side) throws ApiException {
+    private ApiResponse<List<Order>> listOrdersWithHttpInfo(String currencyPair, OrderStatus status, Integer page, Integer limit, Order.AccountEnum account, Long from, Long to, String side) throws ApiException {
         okhttp3.Call localVarCall = listOrdersValidateBeforeCall(currencyPair, status, page, limit, account, from, to, side, null);
         Type localVarReturnType = new TypeToken<List<Order>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call listOrdersAsync(String currencyPair, OrderStatus status, Integer page, Integer limit, String account, Long from, Long to, String side, final ApiCallback<List<Order>> _callback) throws ApiException {
+    private okhttp3.Call listOrdersAsync(String currencyPair, OrderStatus status, Integer page, Integer limit, Order.AccountEnum account, Long from, Long to, String side, final ApiCallback<List<Order>> _callback) throws ApiException {
         okhttp3.Call localVarCall = listOrdersValidateBeforeCall(currencyPair, status, page, limit, account, from, to, side, _callback);
         Type localVarReturnType = new TypeToken<List<Order>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
@@ -2035,7 +2035,7 @@ public class SpotApi {
         private final OrderStatus status;
         private Integer page;
         private Integer limit;
-        private String account;
+        private Order.AccountEnum account;
         private Long from;
         private Long to;
         private String side;
@@ -2070,7 +2070,7 @@ public class SpotApi {
          * @param account Specify operation account. Default to spot and margin account if not specified. Set to &#x60;cross_margin&#x60; to operate against margin account.  Portfolio margin account must set to &#x60;cross_margin&#x60; only (optional)
          * @return APIlistOrdersRequest
          */
-        public APIlistOrdersRequest account(String account) {
+        public APIlistOrdersRequest account(Order.AccountEnum account) {
             this.account = account;
             return this;
         }

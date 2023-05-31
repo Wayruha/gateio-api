@@ -10,17 +10,11 @@
 
 package io.gate.gateapi.api;
 
-import io.gate.gateapi.ApiCallback;
-import io.gate.gateapi.ApiClient;
-import io.gate.gateapi.ApiException;
-import io.gate.gateapi.ApiResponse;
-import io.gate.gateapi.Configuration;
-import io.gate.gateapi.Pair;
-
 import com.google.gson.reflect.TypeToken;
-
-
+import io.gate.gateapi.*;
 import io.gate.gateapi.models.*;
+import lombok.SneakyThrows;
+import okhttp3.Call;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -28,8 +22,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.Collections.emptyList;
+import static java.util.Collections.emptyMap;
+import static java.util.Objects.isNull;
+
 public class MarginApi {
     private ApiClient localVarApiClient;
+    static final String[] AUTH_V4 = new String[]{"apiv4"};
 
     public MarginApi() {
         this(Configuration.getDefaultApiClient());
@@ -49,14 +48,14 @@ public class MarginApi {
 
     /**
      * Build call for listMarginCurrencyPairs
+     *
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call listMarginCurrencyPairsCall(final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
@@ -70,7 +69,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -78,12 +77,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -95,14 +94,13 @@ public class MarginApi {
 
     /**
      * List all supported currency pairs supported in margin trading
-     * 
+     *
      * @return List&lt;MarginCurrencyPair&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public List<MarginCurrencyPair> listMarginCurrencyPairs() throws ApiException {
         ApiResponse<List<MarginCurrencyPair>> localVarResp = listMarginCurrencyPairsWithHttpInfo();
@@ -111,58 +109,58 @@ public class MarginApi {
 
     /**
      * List all supported currency pairs supported in margin trading
-     * 
+     *
      * @return ApiResponse&lt;List&lt;MarginCurrencyPair&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<List<MarginCurrencyPair>> listMarginCurrencyPairsWithHttpInfo() throws ApiException {
         okhttp3.Call localVarCall = listMarginCurrencyPairsValidateBeforeCall(null);
-        Type localVarReturnType = new TypeToken<List<MarginCurrencyPair>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<MarginCurrencyPair>>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * List all supported currency pairs supported in margin trading (asynchronously)
-     * 
+     *
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call listMarginCurrencyPairsAsync(final ApiCallback<List<MarginCurrencyPair>> _callback) throws ApiException {
         okhttp3.Call localVarCall = listMarginCurrencyPairsValidateBeforeCall(_callback);
-        Type localVarReturnType = new TypeToken<List<MarginCurrencyPair>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<MarginCurrencyPair>>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     /**
      * Build call for getMarginCurrencyPair
+     *
      * @param currencyPair Margin currency pair (required)
-     * @param _callback Callback for upload/download progress
+     * @param _callback    Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getMarginCurrencyPairCall(String currencyPair, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/margin/currency_pairs/{currency_pair}"
-            .replaceAll("\\{" + "currency_pair" + "\\}", localVarApiClient.escapeString(currencyPair));
+                .replaceAll("\\{" + "currency_pair" + "\\}", localVarApiClient.escapeString(currencyPair));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -170,7 +168,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -178,12 +176,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -200,15 +198,14 @@ public class MarginApi {
 
     /**
      * Query one single margin currency pair
-     * 
+     *
      * @param currencyPair Margin currency pair (required)
      * @return MarginCurrencyPair
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public MarginCurrencyPair getMarginCurrencyPair(String currencyPair) throws ApiException {
         ApiResponse<MarginCurrencyPair> localVarResp = getMarginCurrencyPairWithHttpInfo(currencyPair);
@@ -217,53 +214,53 @@ public class MarginApi {
 
     /**
      * Query one single margin currency pair
-     * 
+     *
      * @param currencyPair Margin currency pair (required)
      * @return ApiResponse&lt;MarginCurrencyPair&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<MarginCurrencyPair> getMarginCurrencyPairWithHttpInfo(String currencyPair) throws ApiException {
         okhttp3.Call localVarCall = getMarginCurrencyPairValidateBeforeCall(currencyPair, null);
-        Type localVarReturnType = new TypeToken<MarginCurrencyPair>(){}.getType();
+        Type localVarReturnType = new TypeToken<MarginCurrencyPair>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Query one single margin currency pair (asynchronously)
-     * 
+     *
      * @param currencyPair Margin currency pair (required)
-     * @param _callback The callback to be executed when the API call finishes
+     * @param _callback    The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getMarginCurrencyPairAsync(String currencyPair, final ApiCallback<MarginCurrencyPair> _callback) throws ApiException {
         okhttp3.Call localVarCall = getMarginCurrencyPairValidateBeforeCall(currencyPair, _callback);
-        Type localVarReturnType = new TypeToken<MarginCurrencyPair>(){}.getType();
+        Type localVarReturnType = new TypeToken<MarginCurrencyPair>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     /**
      * Build call for listFundingBook
-     * @param currency Retrieve data of the specified currency (required)
+     *
+     * @param currency  Retrieve data of the specified currency (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Order book retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Order book retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call listFundingBookCall(String currency, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
@@ -281,7 +278,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -289,12 +286,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -311,15 +308,14 @@ public class MarginApi {
 
     /**
      * Order book of lending loans
-     * 
+     *
      * @param currency Retrieve data of the specified currency (required)
      * @return List&lt;FundingBookItem&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Order book retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Order book retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public List<FundingBookItem> listFundingBook(String currency) throws ApiException {
         ApiResponse<List<FundingBookItem>> localVarResp = listFundingBookWithHttpInfo(currency);
@@ -328,38 +324,38 @@ public class MarginApi {
 
     /**
      * Order book of lending loans
-     * 
+     *
      * @param currency Retrieve data of the specified currency (required)
      * @return ApiResponse&lt;List&lt;FundingBookItem&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Order book retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Order book retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<List<FundingBookItem>> listFundingBookWithHttpInfo(String currency) throws ApiException {
         okhttp3.Call localVarCall = listFundingBookValidateBeforeCall(currency, null);
-        Type localVarReturnType = new TypeToken<List<FundingBookItem>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<FundingBookItem>>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Order book of lending loans (asynchronously)
-     * 
-     * @param currency Retrieve data of the specified currency (required)
+     *
+     * @param currency  Retrieve data of the specified currency (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Order book retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Order book retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call listFundingBookAsync(String currency, final ApiCallback<List<FundingBookItem>> _callback) throws ApiException {
         okhttp3.Call localVarCall = listFundingBookValidateBeforeCall(currency, _callback);
-        Type localVarReturnType = new TypeToken<List<FundingBookItem>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<FundingBookItem>>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -380,7 +376,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -388,12 +384,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -406,13 +402,15 @@ public class MarginApi {
 
     private ApiResponse<List<MarginAccount>> listMarginAccountsWithHttpInfo(String currencyPair) throws ApiException {
         okhttp3.Call localVarCall = listMarginAccountsValidateBeforeCall(currencyPair, null);
-        Type localVarReturnType = new TypeToken<List<MarginAccount>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<MarginAccount>>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call listMarginAccountsAsync(String currencyPair, final ApiCallback<List<MarginAccount>> _callback) throws ApiException {
         okhttp3.Call localVarCall = listMarginAccountsValidateBeforeCall(currencyPair, _callback);
-        Type localVarReturnType = new TypeToken<List<MarginAccount>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<MarginAccount>>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -425,6 +423,7 @@ public class MarginApi {
 
         /**
          * Set currencyPair
+         *
          * @param currencyPair Currency pair (optional)
          * @return APIlistMarginAccountsRequest
          */
@@ -435,14 +434,14 @@ public class MarginApi {
 
         /**
          * Build call for listMarginAccounts
+         *
          * @param _callback ApiCallback API callback
          * @return Call to execute
          * @throws ApiException If fail to serialize the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
             return listMarginAccountsCall(currencyPair, _callback);
@@ -450,13 +449,13 @@ public class MarginApi {
 
         /**
          * Execute listMarginAccounts request
+         *
          * @return List&lt;MarginAccount&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public List<MarginAccount> execute() throws ApiException {
             ApiResponse<List<MarginAccount>> localVarResp = listMarginAccountsWithHttpInfo(currencyPair);
@@ -465,13 +464,13 @@ public class MarginApi {
 
         /**
          * Execute listMarginAccounts request with HTTP info returned
+         *
          * @return ApiResponse&lt;List&lt;MarginAccount&gt;&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public ApiResponse<List<MarginAccount>> executeWithHttpInfo() throws ApiException {
             return listMarginAccountsWithHttpInfo(currencyPair);
@@ -479,14 +478,14 @@ public class MarginApi {
 
         /**
          * Execute listMarginAccounts request (asynchronously)
+         *
          * @param _callback The callback to be executed when the API call finishes
          * @return The request call
          * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<List<MarginAccount>> _callback) throws ApiException {
             return listMarginAccountsAsync(currencyPair, _callback);
@@ -495,13 +494,12 @@ public class MarginApi {
 
     /**
      * Margin account list
-     * 
+     *
      * @return APIlistMarginAccountsRequest
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public APIlistMarginAccountsRequest listMarginAccounts() {
         return new APIlistMarginAccountsRequest();
@@ -547,7 +545,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -555,12 +553,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -573,13 +571,15 @@ public class MarginApi {
 
     private ApiResponse<List<MarginAccountBook>> listMarginAccountBookWithHttpInfo(String currency, String currencyPair, Long from, Long to, Integer page, Integer limit) throws ApiException {
         okhttp3.Call localVarCall = listMarginAccountBookValidateBeforeCall(currency, currencyPair, from, to, page, limit, null);
-        Type localVarReturnType = new TypeToken<List<MarginAccountBook>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<MarginAccountBook>>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call listMarginAccountBookAsync(String currency, String currencyPair, Long from, Long to, Integer page, Integer limit, final ApiCallback<List<MarginAccountBook>> _callback) throws ApiException {
         okhttp3.Call localVarCall = listMarginAccountBookValidateBeforeCall(currency, currencyPair, from, to, page, limit, _callback);
-        Type localVarReturnType = new TypeToken<List<MarginAccountBook>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<MarginAccountBook>>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -597,6 +597,7 @@ public class MarginApi {
 
         /**
          * Set currency
+         *
          * @param currency List records related to specified currency only. If specified, &#x60;currency_pair&#x60; is also required. (optional)
          * @return APIlistMarginAccountBookRequest
          */
@@ -607,6 +608,7 @@ public class MarginApi {
 
         /**
          * Set currencyPair
+         *
          * @param currencyPair List records related to specified currency pair. Used in combination with &#x60;currency&#x60;. Ignored if &#x60;currency&#x60; is not provided (optional)
          * @return APIlistMarginAccountBookRequest
          */
@@ -617,6 +619,7 @@ public class MarginApi {
 
         /**
          * Set from
+         *
          * @param from Start timestamp of the query (optional)
          * @return APIlistMarginAccountBookRequest
          */
@@ -627,6 +630,7 @@ public class MarginApi {
 
         /**
          * Set to
+         *
          * @param to Time range ending, default to current time (optional)
          * @return APIlistMarginAccountBookRequest
          */
@@ -637,6 +641,7 @@ public class MarginApi {
 
         /**
          * Set page
+         *
          * @param page Page number (optional, default to 1)
          * @return APIlistMarginAccountBookRequest
          */
@@ -647,6 +652,7 @@ public class MarginApi {
 
         /**
          * Set limit
+         *
          * @param limit Maximum number of records to be returned in a single list (optional, default to 100)
          * @return APIlistMarginAccountBookRequest
          */
@@ -657,14 +663,14 @@ public class MarginApi {
 
         /**
          * Build call for listMarginAccountBook
+         *
          * @param _callback ApiCallback API callback
          * @return Call to execute
          * @throws ApiException If fail to serialize the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
             return listMarginAccountBookCall(currency, currencyPair, from, to, page, limit, _callback);
@@ -672,13 +678,13 @@ public class MarginApi {
 
         /**
          * Execute listMarginAccountBook request
+         *
          * @return List&lt;MarginAccountBook&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public List<MarginAccountBook> execute() throws ApiException {
             ApiResponse<List<MarginAccountBook>> localVarResp = listMarginAccountBookWithHttpInfo(currency, currencyPair, from, to, page, limit);
@@ -687,13 +693,13 @@ public class MarginApi {
 
         /**
          * Execute listMarginAccountBook request with HTTP info returned
+         *
          * @return ApiResponse&lt;List&lt;MarginAccountBook&gt;&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public ApiResponse<List<MarginAccountBook>> executeWithHttpInfo() throws ApiException {
             return listMarginAccountBookWithHttpInfo(currency, currencyPair, from, to, page, limit);
@@ -701,14 +707,14 @@ public class MarginApi {
 
         /**
          * Execute listMarginAccountBook request (asynchronously)
+         *
          * @param _callback The callback to be executed when the API call finishes
          * @return The request call
          * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<List<MarginAccountBook>> _callback) throws ApiException {
             return listMarginAccountBookAsync(currency, currencyPair, from, to, page, limit, _callback);
@@ -718,12 +724,12 @@ public class MarginApi {
     /**
      * List margin account balance change history
      * Only transferals from and to margin account are provided for now. Time range allows 30 days at most
+     *
      * @return APIlistMarginAccountBookRequest
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public APIlistMarginAccountBookRequest listMarginAccountBook() {
         return new APIlistMarginAccountBookRequest();
@@ -745,7 +751,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -753,12 +759,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -771,13 +777,15 @@ public class MarginApi {
 
     private ApiResponse<List<FundingAccount>> listFundingAccountsWithHttpInfo(String currency) throws ApiException {
         okhttp3.Call localVarCall = listFundingAccountsValidateBeforeCall(currency, null);
-        Type localVarReturnType = new TypeToken<List<FundingAccount>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<FundingAccount>>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call listFundingAccountsAsync(String currency, final ApiCallback<List<FundingAccount>> _callback) throws ApiException {
         okhttp3.Call localVarCall = listFundingAccountsValidateBeforeCall(currency, _callback);
-        Type localVarReturnType = new TypeToken<List<FundingAccount>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<FundingAccount>>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -790,6 +798,7 @@ public class MarginApi {
 
         /**
          * Set currency
+         *
          * @param currency Retrieve data of the specified currency (optional)
          * @return APIlistFundingAccountsRequest
          */
@@ -800,14 +809,14 @@ public class MarginApi {
 
         /**
          * Build call for listFundingAccounts
+         *
          * @param _callback ApiCallback API callback
          * @return Call to execute
          * @throws ApiException If fail to serialize the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
             return listFundingAccountsCall(currency, _callback);
@@ -815,13 +824,13 @@ public class MarginApi {
 
         /**
          * Execute listFundingAccounts request
+         *
          * @return List&lt;FundingAccount&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public List<FundingAccount> execute() throws ApiException {
             ApiResponse<List<FundingAccount>> localVarResp = listFundingAccountsWithHttpInfo(currency);
@@ -830,13 +839,13 @@ public class MarginApi {
 
         /**
          * Execute listFundingAccounts request with HTTP info returned
+         *
          * @return ApiResponse&lt;List&lt;FundingAccount&gt;&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public ApiResponse<List<FundingAccount>> executeWithHttpInfo() throws ApiException {
             return listFundingAccountsWithHttpInfo(currency);
@@ -844,14 +853,14 @@ public class MarginApi {
 
         /**
          * Execute listFundingAccounts request (asynchronously)
+         *
          * @param _callback The callback to be executed when the API call finishes
          * @return The request call
          * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<List<FundingAccount>> _callback) throws ApiException {
             return listFundingAccountsAsync(currency, _callback);
@@ -860,13 +869,12 @@ public class MarginApi {
 
     /**
      * Funding account list
-     * 
+     *
      * @return APIlistFundingAccountsRequest
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public APIlistFundingAccountsRequest listFundingAccounts() {
         return new APIlistFundingAccountsRequest();
@@ -916,7 +924,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -924,12 +932,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -969,7 +977,7 @@ public class MarginApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, new HashMap<>(), localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -992,7 +1000,8 @@ public class MarginApi {
 
     private ApiResponse<List<Loan>> listLoansWithHttpInfo(String status, String side, String currency, String currencyPair, String sortBy, Boolean reverseSort, Integer page, Integer limit) throws ApiException {
         okhttp3.Call localVarCall = listLoansValidateBeforeCall(status, side, currency, currencyPair, sortBy, reverseSort, page, limit, null);
-        Type localVarReturnType = new TypeToken<List<Loan>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<Loan>>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -1002,13 +1011,50 @@ public class MarginApi {
 
     public ApiResponse<List<UniLoan>> listUniLoansWithHttpInfo(String currency, String currencyPair) throws ApiException {
         okhttp3.Call localVarCall = listUniLoansCall(currency, currencyPair, null, null, null);
-        Type localVarReturnType = new TypeToken<List<Loan>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<Loan>>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    public ApiResponse<List<LoanMarket>> listLendingMarketsWithHttpInfo() throws ApiException {
+        final Call call = buildCall("/margin/uni/currency_pairs", "GET", null,null);
+        final Type type = new TypeToken<List<LoanMarket>>() {}.getType();
+        return localVarApiClient.execute(call, type);
+    }
+
+    public List<LoanMarket> listLendingMarkets() throws ApiException {
+        return listLendingMarketsWithHttpInfo().getData();
+    }
+
+    public ApiResponse<MarginBorrowable> getMaxBorrowableWithHttpInfo(String currency, String currencyPair) throws ApiException {
+        final ArrayList<Pair> params = new ArrayList<>();
+        params.add(new Pair("currency", currency));
+        params.add(new Pair("currency_pair", currencyPair));
+        final Call call = buildCall("/margin/uni/borrowable", "GET", params,null);
+        final Type type = new TypeToken<MarginBorrowable>() {}.getType();
+        return localVarApiClient.execute(call, type);
+    }
+
+    public MarginBorrowable getMaxBorrowable(String currency, String currencyPair) throws ApiException {
+        return getMaxBorrowableWithHttpInfo(currency, currencyPair).getData();
+    }
+
+    @SneakyThrows
+    public okhttp3.Call buildCall(String url, String method, List<Pair> requestParams, Object body) {
+        if(isNull(requestParams)) requestParams = emptyList();
+        Map<String, String> headers = new HashMap<String, String>();
+        final String[] accepts = {"application/json"};
+        final String accept = localVarApiClient.selectHeaderAccept(accepts);
+        if (accept != null) {
+            headers.put("Accept", accept);
+        }
+        return localVarApiClient.buildCall(url, method, requestParams, emptyList(), body, headers, emptyMap(), emptyMap(), AUTH_V4, null);
     }
 
     private okhttp3.Call listLoansAsync(String status, String side, String currency, String currencyPair, String sortBy, Boolean reverseSort, Integer page, Integer limit, final ApiCallback<List<Loan>> _callback) throws ApiException {
         okhttp3.Call localVarCall = listLoansValidateBeforeCall(status, side, currency, currencyPair, sortBy, reverseSort, page, limit, _callback);
-        Type localVarReturnType = new TypeToken<List<Loan>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<Loan>>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -1030,6 +1076,7 @@ public class MarginApi {
 
         /**
          * Set currency
+         *
          * @param currency Retrieve data of the specified currency (optional)
          * @return APIlistLoansRequest
          */
@@ -1040,6 +1087,7 @@ public class MarginApi {
 
         /**
          * Set currencyPair
+         *
          * @param currencyPair Currency pair (optional)
          * @return APIlistLoansRequest
          */
@@ -1050,6 +1098,7 @@ public class MarginApi {
 
         /**
          * Set sortBy
+         *
          * @param sortBy Specify which field is used to sort. &#x60;create_time&#x60; or &#x60;rate&#x60; is supported. Default to &#x60;create_time&#x60; (optional)
          * @return APIlistLoansRequest
          */
@@ -1060,6 +1109,7 @@ public class MarginApi {
 
         /**
          * Set reverseSort
+         *
          * @param reverseSort Whether to sort in descending order. Default to &#x60;true&#x60; (optional)
          * @return APIlistLoansRequest
          */
@@ -1070,6 +1120,7 @@ public class MarginApi {
 
         /**
          * Set page
+         *
          * @param page Page number (optional, default to 1)
          * @return APIlistLoansRequest
          */
@@ -1080,6 +1131,7 @@ public class MarginApi {
 
         /**
          * Set limit
+         *
          * @param limit Maximum number of records to be returned in a single list (optional, default to 100)
          * @return APIlistLoansRequest
          */
@@ -1090,14 +1142,14 @@ public class MarginApi {
 
         /**
          * Build call for listLoans
+         *
          * @param _callback ApiCallback API callback
          * @return Call to execute
          * @throws ApiException If fail to serialize the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
             return listLoansCall(status, side, currency, currencyPair, sortBy, reverseSort, page, limit, _callback);
@@ -1105,13 +1157,13 @@ public class MarginApi {
 
         /**
          * Execute listLoans request
+         *
          * @return List&lt;Loan&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public List<Loan> execute() throws ApiException {
             ApiResponse<List<Loan>> localVarResp = listLoansWithHttpInfo(status, side, currency, currencyPair, sortBy, reverseSort, page, limit);
@@ -1120,13 +1172,13 @@ public class MarginApi {
 
         /**
          * Execute listLoans request with HTTP info returned
+         *
          * @return ApiResponse&lt;List&lt;Loan&gt;&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public ApiResponse<List<Loan>> executeWithHttpInfo() throws ApiException {
             return listLoansWithHttpInfo(status, side, currency, currencyPair, sortBy, reverseSort, page, limit);
@@ -1134,14 +1186,14 @@ public class MarginApi {
 
         /**
          * Execute listLoans request (asynchronously)
+         *
          * @param _callback The callback to be executed when the API call finishes
          * @return The request call
          * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<List<Loan>> _callback) throws ApiException {
             return listLoansAsync(status, side, currency, currencyPair, sortBy, reverseSort, page, limit, _callback);
@@ -1150,15 +1202,14 @@ public class MarginApi {
 
     /**
      * List all loans
-     * 
+     *
      * @param status Loan status (required)
-     * @param side Lend or borrow (required)
+     * @param side   Lend or borrow (required)
      * @return APIlistLoansRequest
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public APIlistLoansRequest listLoans(String status, String side) {
         return new APIlistLoansRequest(status, side);
@@ -1166,15 +1217,15 @@ public class MarginApi {
 
     /**
      * Build call for createLoan
-     * @param loan  (required)
+     *
+     * @param loan      (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Loan created </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td> Loan created </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call createLoanCall(Loan loan, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = loan;
@@ -1188,7 +1239,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1196,12 +1247,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1230,7 +1281,7 @@ public class MarginApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1247,15 +1298,14 @@ public class MarginApi {
 
     /**
      * Lend or borrow
-     * 
-     * @param loan  (required)
+     *
+     * @param loan (required)
      * @return Loan
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Loan created </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td> Loan created </td><td>  -  </td></tr>
+     * </table>
      */
     public Loan createLoan(Loan loan) throws ApiException {
         ApiResponse<Loan> localVarResp = createLoanWithHttpInfo(loan);
@@ -1268,60 +1318,61 @@ public class MarginApi {
 
     public ApiResponse<Void> createUniLoanWithHttpInfo(BorrowRepayReq req) throws ApiException {
         okhttp3.Call localVarCall = createUniLoanCall(req, null);
-        Type localVarReturnType = new TypeToken<Void>(){}.getType();
+        Type localVarReturnType = new TypeToken<Void>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Lend or borrow
-     * 
-     * @param loan  (required)
+     *
+     * @param loan (required)
      * @return ApiResponse&lt;Loan&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Loan created </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td> Loan created </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<Loan> createLoanWithHttpInfo(Loan loan) throws ApiException {
         okhttp3.Call localVarCall = createLoanValidateBeforeCall(loan, null);
-        Type localVarReturnType = new TypeToken<Loan>(){}.getType();
+        Type localVarReturnType = new TypeToken<Loan>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Lend or borrow (asynchronously)
-     * 
-     * @param loan  (required)
+     *
+     * @param loan      (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Loan created </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td> Loan created </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call createLoanAsync(Loan loan, final ApiCallback<Loan> _callback) throws ApiException {
         okhttp3.Call localVarCall = createLoanValidateBeforeCall(loan, _callback);
-        Type localVarReturnType = new TypeToken<Loan>(){}.getType();
+        Type localVarReturnType = new TypeToken<Loan>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     /**
      * Build call for mergeLoans
-     * @param currency Retrieve data of the specified currency (required)
-     * @param ids A comma-separated (,) list of IDs of the loans lent. Maximum of 20 IDs are allowed in a request (required)
+     *
+     * @param currency  Retrieve data of the specified currency (required)
+     * @param ids       A comma-separated (,) list of IDs of the loans lent. Maximum of 20 IDs are allowed in a request (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Loans merged </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td> Loans merged </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call mergeLoansCall(String currency, String ids, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
@@ -1343,7 +1394,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1351,12 +1402,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1378,16 +1429,15 @@ public class MarginApi {
 
     /**
      * Merge multiple lending loans
-     * 
+     *
      * @param currency Retrieve data of the specified currency (required)
-     * @param ids A comma-separated (,) list of IDs of the loans lent. Maximum of 20 IDs are allowed in a request (required)
+     * @param ids      A comma-separated (,) list of IDs of the loans lent. Maximum of 20 IDs are allowed in a request (required)
      * @return Loan
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Loans merged </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td> Loans merged </td><td>  -  </td></tr>
+     * </table>
      */
     public Loan mergeLoans(String currency, String ids) throws ApiException {
         ApiResponse<Loan> localVarResp = mergeLoansWithHttpInfo(currency, ids);
@@ -1396,63 +1446,63 @@ public class MarginApi {
 
     /**
      * Merge multiple lending loans
-     * 
+     *
      * @param currency Retrieve data of the specified currency (required)
-     * @param ids A comma-separated (,) list of IDs of the loans lent. Maximum of 20 IDs are allowed in a request (required)
+     * @param ids      A comma-separated (,) list of IDs of the loans lent. Maximum of 20 IDs are allowed in a request (required)
      * @return ApiResponse&lt;Loan&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Loans merged </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td> Loans merged </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<Loan> mergeLoansWithHttpInfo(String currency, String ids) throws ApiException {
         okhttp3.Call localVarCall = mergeLoansValidateBeforeCall(currency, ids, null);
-        Type localVarReturnType = new TypeToken<Loan>(){}.getType();
+        Type localVarReturnType = new TypeToken<Loan>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Merge multiple lending loans (asynchronously)
-     * 
-     * @param currency Retrieve data of the specified currency (required)
-     * @param ids A comma-separated (,) list of IDs of the loans lent. Maximum of 20 IDs are allowed in a request (required)
+     *
+     * @param currency  Retrieve data of the specified currency (required)
+     * @param ids       A comma-separated (,) list of IDs of the loans lent. Maximum of 20 IDs are allowed in a request (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td> Loans merged </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td> Loans merged </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call mergeLoansAsync(String currency, String ids, final ApiCallback<Loan> _callback) throws ApiException {
         okhttp3.Call localVarCall = mergeLoansValidateBeforeCall(currency, ids, _callback);
-        Type localVarReturnType = new TypeToken<Loan>(){}.getType();
+        Type localVarReturnType = new TypeToken<Loan>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     /**
      * Build call for getLoan
-     * @param loanId Loan ID (required)
-     * @param side Lend or borrow (required)
+     *
+     * @param loanId    Loan ID (required)
+     * @param side      Lend or borrow (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getLoanCall(String loanId, String side, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/margin/loans/{loan_id}"
-            .replaceAll("\\{" + "loan_id" + "\\}", localVarApiClient.escapeString(loanId));
+                .replaceAll("\\{" + "loan_id" + "\\}", localVarApiClient.escapeString(loanId));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1464,7 +1514,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1472,12 +1522,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1499,16 +1549,15 @@ public class MarginApi {
 
     /**
      * Retrieve one single loan detail
-     * 
+     *
      * @param loanId Loan ID (required)
-     * @param side Lend or borrow (required)
+     * @param side   Lend or borrow (required)
      * @return Loan
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public Loan getLoan(String loanId, String side) throws ApiException {
         ApiResponse<Loan> localVarResp = getLoanWithHttpInfo(loanId, side);
@@ -1517,63 +1566,63 @@ public class MarginApi {
 
     /**
      * Retrieve one single loan detail
-     * 
+     *
      * @param loanId Loan ID (required)
-     * @param side Lend or borrow (required)
+     * @param side   Lend or borrow (required)
      * @return ApiResponse&lt;Loan&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<Loan> getLoanWithHttpInfo(String loanId, String side) throws ApiException {
         okhttp3.Call localVarCall = getLoanValidateBeforeCall(loanId, side, null);
-        Type localVarReturnType = new TypeToken<Loan>(){}.getType();
+        Type localVarReturnType = new TypeToken<Loan>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Retrieve one single loan detail (asynchronously)
-     * 
-     * @param loanId Loan ID (required)
-     * @param side Lend or borrow (required)
+     *
+     * @param loanId    Loan ID (required)
+     * @param side      Lend or borrow (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getLoanAsync(String loanId, String side, final ApiCallback<Loan> _callback) throws ApiException {
         okhttp3.Call localVarCall = getLoanValidateBeforeCall(loanId, side, _callback);
-        Type localVarReturnType = new TypeToken<Loan>(){}.getType();
+        Type localVarReturnType = new TypeToken<Loan>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     /**
      * Build call for cancelLoan
-     * @param loanId Loan ID (required)
-     * @param currency Retrieve data of the specified currency (required)
+     *
+     * @param loanId    Loan ID (required)
+     * @param currency  Retrieve data of the specified currency (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Order cancelled </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Order cancelled </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call cancelLoanCall(String loanId, String currency, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/margin/loans/{loan_id}"
-            .replaceAll("\\{" + "loan_id" + "\\}", localVarApiClient.escapeString(loanId));
+                .replaceAll("\\{" + "loan_id" + "\\}", localVarApiClient.escapeString(loanId));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1585,7 +1634,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1593,12 +1642,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1621,15 +1670,15 @@ public class MarginApi {
     /**
      * Cancel lending loan
      * Only lent loans can be cancelled
-     * @param loanId Loan ID (required)
+     *
+     * @param loanId   Loan ID (required)
      * @param currency Retrieve data of the specified currency (required)
      * @return Loan
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Order cancelled </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Order cancelled </td><td>  -  </td></tr>
+     * </table>
      */
     public Loan cancelLoan(String loanId, String currency) throws ApiException {
         ApiResponse<Loan> localVarResp = cancelLoanWithHttpInfo(loanId, currency);
@@ -1639,62 +1688,64 @@ public class MarginApi {
     /**
      * Cancel lending loan
      * Only lent loans can be cancelled
-     * @param loanId Loan ID (required)
+     *
+     * @param loanId   Loan ID (required)
      * @param currency Retrieve data of the specified currency (required)
      * @return ApiResponse&lt;Loan&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Order cancelled </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Order cancelled </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<Loan> cancelLoanWithHttpInfo(String loanId, String currency) throws ApiException {
         okhttp3.Call localVarCall = cancelLoanValidateBeforeCall(loanId, currency, null);
-        Type localVarReturnType = new TypeToken<Loan>(){}.getType();
+        Type localVarReturnType = new TypeToken<Loan>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Cancel lending loan (asynchronously)
      * Only lent loans can be cancelled
-     * @param loanId Loan ID (required)
-     * @param currency Retrieve data of the specified currency (required)
+     *
+     * @param loanId    Loan ID (required)
+     * @param currency  Retrieve data of the specified currency (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Order cancelled </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Order cancelled </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call cancelLoanAsync(String loanId, String currency, final ApiCallback<Loan> _callback) throws ApiException {
         okhttp3.Call localVarCall = cancelLoanValidateBeforeCall(loanId, currency, _callback);
-        Type localVarReturnType = new TypeToken<Loan>(){}.getType();
+        Type localVarReturnType = new TypeToken<Loan>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     /**
      * Build call for updateLoan
-     * @param loanId Loan ID (required)
-     * @param loanPatch  (required)
+     *
+     * @param loanId    Loan ID (required)
+     * @param loanPatch (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Updated </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Updated </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call updateLoanCall(String loanId, LoanPatch loanPatch, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = loanPatch;
 
         // create path and map variables
         String localVarPath = "/margin/loans/{loan_id}"
-            .replaceAll("\\{" + "loan_id" + "\\}", localVarApiClient.escapeString(loanId));
+                .replaceAll("\\{" + "loan_id" + "\\}", localVarApiClient.escapeString(loanId));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1702,7 +1753,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1710,12 +1761,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1738,15 +1789,15 @@ public class MarginApi {
     /**
      * Modify a loan
      * Only &#x60;auto_renew&#x60; modification is supported currently
-     * @param loanId Loan ID (required)
-     * @param loanPatch  (required)
+     *
+     * @param loanId    Loan ID (required)
+     * @param loanPatch (required)
      * @return Loan
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Updated </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Updated </td><td>  -  </td></tr>
+     * </table>
      */
     public Loan updateLoan(String loanId, LoanPatch loanPatch) throws ApiException {
         ApiResponse<Loan> localVarResp = updateLoanWithHttpInfo(loanId, loanPatch);
@@ -1756,61 +1807,63 @@ public class MarginApi {
     /**
      * Modify a loan
      * Only &#x60;auto_renew&#x60; modification is supported currently
-     * @param loanId Loan ID (required)
-     * @param loanPatch  (required)
+     *
+     * @param loanId    Loan ID (required)
+     * @param loanPatch (required)
      * @return ApiResponse&lt;Loan&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Updated </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Updated </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<Loan> updateLoanWithHttpInfo(String loanId, LoanPatch loanPatch) throws ApiException {
         okhttp3.Call localVarCall = updateLoanValidateBeforeCall(loanId, loanPatch, null);
-        Type localVarReturnType = new TypeToken<Loan>(){}.getType();
+        Type localVarReturnType = new TypeToken<Loan>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Modify a loan (asynchronously)
      * Only &#x60;auto_renew&#x60; modification is supported currently
-     * @param loanId Loan ID (required)
-     * @param loanPatch  (required)
+     *
+     * @param loanId    Loan ID (required)
+     * @param loanPatch (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Updated </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Updated </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call updateLoanAsync(String loanId, LoanPatch loanPatch, final ApiCallback<Loan> _callback) throws ApiException {
         okhttp3.Call localVarCall = updateLoanValidateBeforeCall(loanId, loanPatch, _callback);
-        Type localVarReturnType = new TypeToken<Loan>(){}.getType();
+        Type localVarReturnType = new TypeToken<Loan>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     /**
      * Build call for listLoanRepayments
-     * @param loanId Loan ID (required)
+     *
+     * @param loanId    Loan ID (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call listLoanRepaymentsCall(String loanId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/margin/loans/{loan_id}/repayment"
-            .replaceAll("\\{" + "loan_id" + "\\}", localVarApiClient.escapeString(loanId));
+                .replaceAll("\\{" + "loan_id" + "\\}", localVarApiClient.escapeString(loanId));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1818,7 +1871,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1826,12 +1879,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1848,15 +1901,14 @@ public class MarginApi {
 
     /**
      * List loan repayment records
-     * 
+     *
      * @param loanId Loan ID (required)
      * @return List&lt;Repayment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public List<Repayment> listLoanRepayments(String loanId) throws ApiException {
         ApiResponse<List<Repayment>> localVarResp = listLoanRepaymentsWithHttpInfo(loanId);
@@ -1865,61 +1917,61 @@ public class MarginApi {
 
     /**
      * List loan repayment records
-     * 
+     *
      * @param loanId Loan ID (required)
      * @return ApiResponse&lt;List&lt;Repayment&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<List<Repayment>> listLoanRepaymentsWithHttpInfo(String loanId) throws ApiException {
         okhttp3.Call localVarCall = listLoanRepaymentsValidateBeforeCall(loanId, null);
-        Type localVarReturnType = new TypeToken<List<Repayment>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<Repayment>>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * List loan repayment records (asynchronously)
-     * 
-     * @param loanId Loan ID (required)
+     *
+     * @param loanId    Loan ID (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call listLoanRepaymentsAsync(String loanId, final ApiCallback<List<Repayment>> _callback) throws ApiException {
         okhttp3.Call localVarCall = listLoanRepaymentsValidateBeforeCall(loanId, _callback);
-        Type localVarReturnType = new TypeToken<List<Repayment>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<Repayment>>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     /**
      * Build call for repayLoan
-     * @param loanId Loan ID (required)
-     * @param repayRequest  (required)
-     * @param _callback Callback for upload/download progress
+     *
+     * @param loanId       Loan ID (required)
+     * @param repayRequest (required)
+     * @param _callback    Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Loan repaid </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Loan repaid </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call repayLoanCall(String loanId, RepayRequest repayRequest, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = repayRequest;
 
         // create path and map variables
         String localVarPath = "/margin/loans/{loan_id}/repayment"
-            .replaceAll("\\{" + "loan_id" + "\\}", localVarApiClient.escapeString(loanId));
+                .replaceAll("\\{" + "loan_id" + "\\}", localVarApiClient.escapeString(loanId));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1927,7 +1979,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1935,12 +1987,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1962,16 +2014,15 @@ public class MarginApi {
 
     /**
      * Repay a loan
-     * 
-     * @param loanId Loan ID (required)
-     * @param repayRequest  (required)
+     *
+     * @param loanId       Loan ID (required)
+     * @param repayRequest (required)
      * @return Loan
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Loan repaid </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Loan repaid </td><td>  -  </td></tr>
+     * </table>
      */
     public Loan repayLoan(String loanId, RepayRequest repayRequest) throws ApiException {
         ApiResponse<Loan> localVarResp = repayLoanWithHttpInfo(loanId, repayRequest);
@@ -1980,40 +2031,40 @@ public class MarginApi {
 
     /**
      * Repay a loan
-     * 
-     * @param loanId Loan ID (required)
-     * @param repayRequest  (required)
+     *
+     * @param loanId       Loan ID (required)
+     * @param repayRequest (required)
      * @return ApiResponse&lt;Loan&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Loan repaid </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Loan repaid </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<Loan> repayLoanWithHttpInfo(String loanId, RepayRequest repayRequest) throws ApiException {
         okhttp3.Call localVarCall = repayLoanValidateBeforeCall(loanId, repayRequest, null);
-        Type localVarReturnType = new TypeToken<Loan>(){}.getType();
+        Type localVarReturnType = new TypeToken<Loan>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Repay a loan (asynchronously)
-     * 
-     * @param loanId Loan ID (required)
-     * @param repayRequest  (required)
-     * @param _callback The callback to be executed when the API call finishes
+     *
+     * @param loanId       Loan ID (required)
+     * @param repayRequest (required)
+     * @param _callback    The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Loan repaid </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Loan repaid </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call repayLoanAsync(String loanId, RepayRequest repayRequest, final ApiCallback<Loan> _callback) throws ApiException {
         okhttp3.Call localVarCall = repayLoanValidateBeforeCall(loanId, repayRequest, _callback);
-        Type localVarReturnType = new TypeToken<Loan>(){}.getType();
+        Type localVarReturnType = new TypeToken<Loan>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -2046,7 +2097,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -2054,12 +2105,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -2077,13 +2128,15 @@ public class MarginApi {
 
     private ApiResponse<List<LoanRecord>> listLoanRecordsWithHttpInfo(String loanId, String status, Integer page, Integer limit) throws ApiException {
         okhttp3.Call localVarCall = listLoanRecordsValidateBeforeCall(loanId, status, page, limit, null);
-        Type localVarReturnType = new TypeToken<List<LoanRecord>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<LoanRecord>>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call listLoanRecordsAsync(String loanId, String status, Integer page, Integer limit, final ApiCallback<List<LoanRecord>> _callback) throws ApiException {
         okhttp3.Call localVarCall = listLoanRecordsValidateBeforeCall(loanId, status, page, limit, _callback);
-        Type localVarReturnType = new TypeToken<List<LoanRecord>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<LoanRecord>>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -2100,6 +2153,7 @@ public class MarginApi {
 
         /**
          * Set status
+         *
          * @param status Loan record status (optional)
          * @return APIlistLoanRecordsRequest
          */
@@ -2110,6 +2164,7 @@ public class MarginApi {
 
         /**
          * Set page
+         *
          * @param page Page number (optional, default to 1)
          * @return APIlistLoanRecordsRequest
          */
@@ -2120,6 +2175,7 @@ public class MarginApi {
 
         /**
          * Set limit
+         *
          * @param limit Maximum number of records to be returned in a single list (optional, default to 100)
          * @return APIlistLoanRecordsRequest
          */
@@ -2130,14 +2186,14 @@ public class MarginApi {
 
         /**
          * Build call for listLoanRecords
+         *
          * @param _callback ApiCallback API callback
          * @return Call to execute
          * @throws ApiException If fail to serialize the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
             return listLoanRecordsCall(loanId, status, page, limit, _callback);
@@ -2145,13 +2201,13 @@ public class MarginApi {
 
         /**
          * Execute listLoanRecords request
+         *
          * @return List&lt;LoanRecord&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public List<LoanRecord> execute() throws ApiException {
             ApiResponse<List<LoanRecord>> localVarResp = listLoanRecordsWithHttpInfo(loanId, status, page, limit);
@@ -2160,13 +2216,13 @@ public class MarginApi {
 
         /**
          * Execute listLoanRecords request with HTTP info returned
+         *
          * @return ApiResponse&lt;List&lt;LoanRecord&gt;&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public ApiResponse<List<LoanRecord>> executeWithHttpInfo() throws ApiException {
             return listLoanRecordsWithHttpInfo(loanId, status, page, limit);
@@ -2174,14 +2230,14 @@ public class MarginApi {
 
         /**
          * Execute listLoanRecords request (asynchronously)
+         *
          * @param _callback The callback to be executed when the API call finishes
          * @return The request call
          * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<List<LoanRecord>> _callback) throws ApiException {
             return listLoanRecordsAsync(loanId, status, page, limit, _callback);
@@ -2190,14 +2246,13 @@ public class MarginApi {
 
     /**
      * List repayment records of a specific loan
-     * 
+     *
      * @param loanId Loan ID (required)
      * @return APIlistLoanRecordsRequest
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public APIlistLoanRecordsRequest listLoanRecords(String loanId) {
         return new APIlistLoanRecordsRequest(loanId);
@@ -2205,23 +2260,23 @@ public class MarginApi {
 
     /**
      * Build call for getLoanRecord
+     *
      * @param loanRecordId Loan record ID (required)
-     * @param loanId Loan ID (required)
-     * @param _callback Callback for upload/download progress
+     * @param loanId       Loan ID (required)
+     * @param _callback    Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Detail retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Detail retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getLoanRecordCall(String loanRecordId, String loanId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/margin/loan_records/{loan_record_id}"
-            .replaceAll("\\{" + "loan_record_id" + "\\}", localVarApiClient.escapeString(loanRecordId));
+                .replaceAll("\\{" + "loan_record_id" + "\\}", localVarApiClient.escapeString(loanRecordId));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2233,7 +2288,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -2241,12 +2296,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -2268,16 +2323,15 @@ public class MarginApi {
 
     /**
      * Get one single loan record
-     * 
+     *
      * @param loanRecordId Loan record ID (required)
-     * @param loanId Loan ID (required)
+     * @param loanId       Loan ID (required)
      * @return LoanRecord
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Detail retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Detail retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public LoanRecord getLoanRecord(String loanRecordId, String loanId) throws ApiException {
         ApiResponse<LoanRecord> localVarResp = getLoanRecordWithHttpInfo(loanRecordId, loanId);
@@ -2286,63 +2340,63 @@ public class MarginApi {
 
     /**
      * Get one single loan record
-     * 
+     *
      * @param loanRecordId Loan record ID (required)
-     * @param loanId Loan ID (required)
+     * @param loanId       Loan ID (required)
      * @return ApiResponse&lt;LoanRecord&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Detail retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Detail retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<LoanRecord> getLoanRecordWithHttpInfo(String loanRecordId, String loanId) throws ApiException {
         okhttp3.Call localVarCall = getLoanRecordValidateBeforeCall(loanRecordId, loanId, null);
-        Type localVarReturnType = new TypeToken<LoanRecord>(){}.getType();
+        Type localVarReturnType = new TypeToken<LoanRecord>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Get one single loan record (asynchronously)
-     * 
+     *
      * @param loanRecordId Loan record ID (required)
-     * @param loanId Loan ID (required)
-     * @param _callback The callback to be executed when the API call finishes
+     * @param loanId       Loan ID (required)
+     * @param _callback    The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Detail retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Detail retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getLoanRecordAsync(String loanRecordId, String loanId, final ApiCallback<LoanRecord> _callback) throws ApiException {
         okhttp3.Call localVarCall = getLoanRecordValidateBeforeCall(loanRecordId, loanId, _callback);
-        Type localVarReturnType = new TypeToken<LoanRecord>(){}.getType();
+        Type localVarReturnType = new TypeToken<LoanRecord>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     /**
      * Build call for updateLoanRecord
+     *
      * @param loanRecordId Loan record ID (required)
-     * @param loanPatch  (required)
-     * @param _callback Callback for upload/download progress
+     * @param loanPatch    (required)
+     * @param _callback    Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Loan record updated </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Loan record updated </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call updateLoanRecordCall(String loanRecordId, LoanPatch loanPatch, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = loanPatch;
 
         // create path and map variables
         String localVarPath = "/margin/loan_records/{loan_record_id}"
-            .replaceAll("\\{" + "loan_record_id" + "\\}", localVarApiClient.escapeString(loanRecordId));
+                .replaceAll("\\{" + "loan_record_id" + "\\}", localVarApiClient.escapeString(loanRecordId));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2350,7 +2404,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -2358,12 +2412,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -2386,15 +2440,15 @@ public class MarginApi {
     /**
      * Modify a loan record
      * Only &#x60;auto_renew&#x60; modification is supported currently
+     *
      * @param loanRecordId Loan record ID (required)
-     * @param loanPatch  (required)
+     * @param loanPatch    (required)
      * @return LoanRecord
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Loan record updated </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Loan record updated </td><td>  -  </td></tr>
+     * </table>
      */
     public LoanRecord updateLoanRecord(String loanRecordId, LoanPatch loanPatch) throws ApiException {
         ApiResponse<LoanRecord> localVarResp = updateLoanRecordWithHttpInfo(loanRecordId, loanPatch);
@@ -2404,53 +2458,55 @@ public class MarginApi {
     /**
      * Modify a loan record
      * Only &#x60;auto_renew&#x60; modification is supported currently
+     *
      * @param loanRecordId Loan record ID (required)
-     * @param loanPatch  (required)
+     * @param loanPatch    (required)
      * @return ApiResponse&lt;LoanRecord&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Loan record updated </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Loan record updated </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<LoanRecord> updateLoanRecordWithHttpInfo(String loanRecordId, LoanPatch loanPatch) throws ApiException {
         okhttp3.Call localVarCall = updateLoanRecordValidateBeforeCall(loanRecordId, loanPatch, null);
-        Type localVarReturnType = new TypeToken<LoanRecord>(){}.getType();
+        Type localVarReturnType = new TypeToken<LoanRecord>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Modify a loan record (asynchronously)
      * Only &#x60;auto_renew&#x60; modification is supported currently
+     *
      * @param loanRecordId Loan record ID (required)
-     * @param loanPatch  (required)
-     * @param _callback The callback to be executed when the API call finishes
+     * @param loanPatch    (required)
+     * @param _callback    The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Loan record updated </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Loan record updated </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call updateLoanRecordAsync(String loanRecordId, LoanPatch loanPatch, final ApiCallback<LoanRecord> _callback) throws ApiException {
         okhttp3.Call localVarCall = updateLoanRecordValidateBeforeCall(loanRecordId, loanPatch, _callback);
-        Type localVarReturnType = new TypeToken<LoanRecord>(){}.getType();
+        Type localVarReturnType = new TypeToken<LoanRecord>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     /**
      * Build call for getAutoRepayStatus
+     *
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Current auto repayment setting </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Current auto repayment setting </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getAutoRepayStatusCall(final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
@@ -2464,7 +2520,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -2472,12 +2528,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -2489,14 +2545,13 @@ public class MarginApi {
 
     /**
      * Retrieve user auto repayment setting
-     * 
+     *
      * @return AutoRepaySetting
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Current auto repayment setting </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Current auto repayment setting </td><td>  -  </td></tr>
+     * </table>
      */
     public AutoRepaySetting getAutoRepayStatus() throws ApiException {
         ApiResponse<AutoRepaySetting> localVarResp = getAutoRepayStatusWithHttpInfo();
@@ -2505,51 +2560,51 @@ public class MarginApi {
 
     /**
      * Retrieve user auto repayment setting
-     * 
+     *
      * @return ApiResponse&lt;AutoRepaySetting&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Current auto repayment setting </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Current auto repayment setting </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<AutoRepaySetting> getAutoRepayStatusWithHttpInfo() throws ApiException {
         okhttp3.Call localVarCall = getAutoRepayStatusValidateBeforeCall(null);
-        Type localVarReturnType = new TypeToken<AutoRepaySetting>(){}.getType();
+        Type localVarReturnType = new TypeToken<AutoRepaySetting>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Retrieve user auto repayment setting (asynchronously)
-     * 
+     *
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Current auto repayment setting </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Current auto repayment setting </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getAutoRepayStatusAsync(final ApiCallback<AutoRepaySetting> _callback) throws ApiException {
         okhttp3.Call localVarCall = getAutoRepayStatusValidateBeforeCall(_callback);
-        Type localVarReturnType = new TypeToken<AutoRepaySetting>(){}.getType();
+        Type localVarReturnType = new TypeToken<AutoRepaySetting>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     /**
      * Build call for setAutoRepay
-     * @param status New auto repayment status. &#x60;on&#x60; - enabled, &#x60;off&#x60; - disabled (required)
+     *
+     * @param status    New auto repayment status. &#x60;on&#x60; - enabled, &#x60;off&#x60; - disabled (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Current auto repayment setting </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Current auto repayment setting </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call setAutoRepayCall(String status, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
@@ -2567,7 +2622,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -2575,12 +2630,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -2597,15 +2652,14 @@ public class MarginApi {
 
     /**
      * Update user&#39;s auto repayment setting
-     * 
+     *
      * @param status New auto repayment status. &#x60;on&#x60; - enabled, &#x60;off&#x60; - disabled (required)
      * @return AutoRepaySetting
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Current auto repayment setting </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Current auto repayment setting </td><td>  -  </td></tr>
+     * </table>
      */
     public AutoRepaySetting setAutoRepay(String status) throws ApiException {
         ApiResponse<AutoRepaySetting> localVarResp = setAutoRepayWithHttpInfo(status);
@@ -2614,38 +2668,38 @@ public class MarginApi {
 
     /**
      * Update user&#39;s auto repayment setting
-     * 
+     *
      * @param status New auto repayment status. &#x60;on&#x60; - enabled, &#x60;off&#x60; - disabled (required)
      * @return ApiResponse&lt;AutoRepaySetting&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Current auto repayment setting </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Current auto repayment setting </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<AutoRepaySetting> setAutoRepayWithHttpInfo(String status) throws ApiException {
         okhttp3.Call localVarCall = setAutoRepayValidateBeforeCall(status, null);
-        Type localVarReturnType = new TypeToken<AutoRepaySetting>(){}.getType();
+        Type localVarReturnType = new TypeToken<AutoRepaySetting>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Update user&#39;s auto repayment setting (asynchronously)
-     * 
-     * @param status New auto repayment status. &#x60;on&#x60; - enabled, &#x60;off&#x60; - disabled (required)
+     *
+     * @param status    New auto repayment status. &#x60;on&#x60; - enabled, &#x60;off&#x60; - disabled (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Current auto repayment setting </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Current auto repayment setting </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call setAutoRepayAsync(String status, final ApiCallback<AutoRepaySetting> _callback) throws ApiException {
         okhttp3.Call localVarCall = setAutoRepayValidateBeforeCall(status, _callback);
-        Type localVarReturnType = new TypeToken<AutoRepaySetting>(){}.getType();
+        Type localVarReturnType = new TypeToken<AutoRepaySetting>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -2670,7 +2724,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -2678,12 +2732,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -2705,13 +2759,15 @@ public class MarginApi {
 
     private ApiResponse<MarginTransferable> getMarginTransferableWithHttpInfo(String currency, String currencyPair) throws ApiException {
         okhttp3.Call localVarCall = getMarginTransferableValidateBeforeCall(currency, currencyPair, null);
-        Type localVarReturnType = new TypeToken<MarginTransferable>(){}.getType();
+        Type localVarReturnType = new TypeToken<MarginTransferable>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getMarginTransferableAsync(String currency, String currencyPair, final ApiCallback<MarginTransferable> _callback) throws ApiException {
         okhttp3.Call localVarCall = getMarginTransferableValidateBeforeCall(currency, currencyPair, _callback);
-        Type localVarReturnType = new TypeToken<MarginTransferable>(){}.getType();
+        Type localVarReturnType = new TypeToken<MarginTransferable>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -2726,6 +2782,7 @@ public class MarginApi {
 
         /**
          * Set currencyPair
+         *
          * @param currencyPair Currency pair (optional)
          * @return APIgetMarginTransferableRequest
          */
@@ -2736,14 +2793,14 @@ public class MarginApi {
 
         /**
          * Build call for getMarginTransferable
+         *
          * @param _callback ApiCallback API callback
          * @return Call to execute
          * @throws ApiException If fail to serialize the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
             return getMarginTransferableCall(currency, currencyPair, _callback);
@@ -2751,13 +2808,13 @@ public class MarginApi {
 
         /**
          * Execute getMarginTransferable request
+         *
          * @return MarginTransferable
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public MarginTransferable execute() throws ApiException {
             ApiResponse<MarginTransferable> localVarResp = getMarginTransferableWithHttpInfo(currency, currencyPair);
@@ -2766,13 +2823,13 @@ public class MarginApi {
 
         /**
          * Execute getMarginTransferable request with HTTP info returned
+         *
          * @return ApiResponse&lt;MarginTransferable&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public ApiResponse<MarginTransferable> executeWithHttpInfo() throws ApiException {
             return getMarginTransferableWithHttpInfo(currency, currencyPair);
@@ -2780,14 +2837,14 @@ public class MarginApi {
 
         /**
          * Execute getMarginTransferable request (asynchronously)
+         *
          * @param _callback The callback to be executed when the API call finishes
          * @return The request call
          * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<MarginTransferable> _callback) throws ApiException {
             return getMarginTransferableAsync(currency, currencyPair, _callback);
@@ -2796,14 +2853,13 @@ public class MarginApi {
 
     /**
      * Get the max transferable amount for a specific margin currency
-     * 
+     *
      * @param currency Retrieve data of the specified currency (required)
      * @return APIgetMarginTransferableRequest
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public APIgetMarginTransferableRequest getMarginTransferable(String currency) {
         return new APIgetMarginTransferableRequest(currency);
@@ -2829,7 +2885,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -2837,12 +2893,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -2864,13 +2920,15 @@ public class MarginApi {
 
     private ApiResponse<MarginBorrowable> getMarginBorrowableWithHttpInfo(String currency, String currencyPair) throws ApiException {
         okhttp3.Call localVarCall = getMarginBorrowableValidateBeforeCall(currency, currencyPair, null);
-        Type localVarReturnType = new TypeToken<MarginBorrowable>(){}.getType();
+        Type localVarReturnType = new TypeToken<MarginBorrowable>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call getMarginBorrowableAsync(String currency, String currencyPair, final ApiCallback<MarginBorrowable> _callback) throws ApiException {
         okhttp3.Call localVarCall = getMarginBorrowableValidateBeforeCall(currency, currencyPair, _callback);
-        Type localVarReturnType = new TypeToken<MarginBorrowable>(){}.getType();
+        Type localVarReturnType = new TypeToken<MarginBorrowable>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -2885,6 +2943,7 @@ public class MarginApi {
 
         /**
          * Set currencyPair
+         *
          * @param currencyPair Currency pair (optional)
          * @return APIgetMarginBorrowableRequest
          */
@@ -2895,14 +2954,14 @@ public class MarginApi {
 
         /**
          * Build call for getMarginBorrowable
+         *
          * @param _callback ApiCallback API callback
          * @return Call to execute
          * @throws ApiException If fail to serialize the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
             return getMarginBorrowableCall(currency, currencyPair, _callback);
@@ -2910,13 +2969,13 @@ public class MarginApi {
 
         /**
          * Execute getMarginBorrowable request
+         *
          * @return MarginBorrowable
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public MarginBorrowable execute() throws ApiException {
             ApiResponse<MarginBorrowable> localVarResp = getMarginBorrowableWithHttpInfo(currency, currencyPair);
@@ -2925,13 +2984,13 @@ public class MarginApi {
 
         /**
          * Execute getMarginBorrowable request with HTTP info returned
+         *
          * @return ApiResponse&lt;MarginBorrowable&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public ApiResponse<MarginBorrowable> executeWithHttpInfo() throws ApiException {
             return getMarginBorrowableWithHttpInfo(currency, currencyPair);
@@ -2939,14 +2998,14 @@ public class MarginApi {
 
         /**
          * Execute getMarginBorrowable request (asynchronously)
+         *
          * @param _callback The callback to be executed when the API call finishes
          * @return The request call
          * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<MarginBorrowable> _callback) throws ApiException {
             return getMarginBorrowableAsync(currency, currencyPair, _callback);
@@ -2955,14 +3014,13 @@ public class MarginApi {
 
     /**
      * Get the max borrowable amount for a specific margin currency
-     * 
+     *
      * @param currency Retrieve data of the specified currency (required)
      * @return APIgetMarginBorrowableRequest
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public APIgetMarginBorrowableRequest getMarginBorrowable(String currency) {
         return new APIgetMarginBorrowableRequest(currency);
@@ -2974,14 +3032,14 @@ public class MarginApi {
 
     /**
      * Build call for listCrossMarginCurrencies
+     *
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call listCrossMarginCurrenciesCall(final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
@@ -2995,7 +3053,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -3003,12 +3061,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -3020,14 +3078,13 @@ public class MarginApi {
 
     /**
      * Currencies supported by cross margin.
-     * 
+     *
      * @return List&lt;CrossMarginCurrency&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public List<CrossMarginCurrency> listCrossMarginCurrencies() throws ApiException {
         ApiResponse<List<CrossMarginCurrency>> localVarResp = listCrossMarginCurrenciesWithHttpInfo();
@@ -3036,58 +3093,58 @@ public class MarginApi {
 
     /**
      * Currencies supported by cross margin.
-     * 
+     *
      * @return ApiResponse&lt;List&lt;CrossMarginCurrency&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<List<CrossMarginCurrency>> listCrossMarginCurrenciesWithHttpInfo() throws ApiException {
         okhttp3.Call localVarCall = listCrossMarginCurrenciesValidateBeforeCall(null);
-        Type localVarReturnType = new TypeToken<List<CrossMarginCurrency>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<CrossMarginCurrency>>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Currencies supported by cross margin. (asynchronously)
-     * 
+     *
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call listCrossMarginCurrenciesAsync(final ApiCallback<List<CrossMarginCurrency>> _callback) throws ApiException {
         okhttp3.Call localVarCall = listCrossMarginCurrenciesValidateBeforeCall(_callback);
-        Type localVarReturnType = new TypeToken<List<CrossMarginCurrency>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<CrossMarginCurrency>>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     /**
      * Build call for getCrossMarginCurrency
-     * @param currency Currency name (required)
+     *
+     * @param currency  Currency name (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getCrossMarginCurrencyCall(String currency, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/margin/cross/currencies/{currency}"
-            .replaceAll("\\{" + "currency" + "\\}", localVarApiClient.escapeString(currency));
+                .replaceAll("\\{" + "currency" + "\\}", localVarApiClient.escapeString(currency));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3095,7 +3152,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -3103,12 +3160,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -3125,15 +3182,14 @@ public class MarginApi {
 
     /**
      * Retrieve detail of one single currency supported by cross margin
-     * 
+     *
      * @param currency Currency name (required)
      * @return CrossMarginCurrency
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public CrossMarginCurrency getCrossMarginCurrency(String currency) throws ApiException {
         ApiResponse<CrossMarginCurrency> localVarResp = getCrossMarginCurrencyWithHttpInfo(currency);
@@ -3142,52 +3198,52 @@ public class MarginApi {
 
     /**
      * Retrieve detail of one single currency supported by cross margin
-     * 
+     *
      * @param currency Currency name (required)
      * @return ApiResponse&lt;CrossMarginCurrency&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<CrossMarginCurrency> getCrossMarginCurrencyWithHttpInfo(String currency) throws ApiException {
         okhttp3.Call localVarCall = getCrossMarginCurrencyValidateBeforeCall(currency, null);
-        Type localVarReturnType = new TypeToken<CrossMarginCurrency>(){}.getType();
+        Type localVarReturnType = new TypeToken<CrossMarginCurrency>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Retrieve detail of one single currency supported by cross margin (asynchronously)
-     * 
-     * @param currency Currency name (required)
+     *
+     * @param currency  Currency name (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getCrossMarginCurrencyAsync(String currency, final ApiCallback<CrossMarginCurrency> _callback) throws ApiException {
         okhttp3.Call localVarCall = getCrossMarginCurrencyValidateBeforeCall(currency, _callback);
-        Type localVarReturnType = new TypeToken<CrossMarginCurrency>(){}.getType();
+        Type localVarReturnType = new TypeToken<CrossMarginCurrency>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     /**
      * Build call for getCrossMarginAccount
+     *
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getCrossMarginAccountCall(final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
@@ -3201,7 +3257,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -3209,12 +3265,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -3226,14 +3282,13 @@ public class MarginApi {
 
     /**
      * Retrieve cross margin account
-     * 
+     *
      * @return CrossMarginAccount
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public CrossMarginAccount getCrossMarginAccount() throws ApiException {
         ApiResponse<CrossMarginAccount> localVarResp = getCrossMarginAccountWithHttpInfo();
@@ -3242,36 +3297,36 @@ public class MarginApi {
 
     /**
      * Retrieve cross margin account
-     * 
+     *
      * @return ApiResponse&lt;CrossMarginAccount&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<CrossMarginAccount> getCrossMarginAccountWithHttpInfo() throws ApiException {
         okhttp3.Call localVarCall = getCrossMarginAccountValidateBeforeCall(null);
-        Type localVarReturnType = new TypeToken<CrossMarginAccount>(){}.getType();
+        Type localVarReturnType = new TypeToken<CrossMarginAccount>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Retrieve cross margin account (asynchronously)
-     * 
+     *
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getCrossMarginAccountAsync(final ApiCallback<CrossMarginAccount> _callback) throws ApiException {
         okhttp3.Call localVarCall = getCrossMarginAccountValidateBeforeCall(_callback);
-        Type localVarReturnType = new TypeToken<CrossMarginAccount>(){}.getType();
+        Type localVarReturnType = new TypeToken<CrossMarginAccount>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -3312,7 +3367,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -3320,12 +3375,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -3338,13 +3393,15 @@ public class MarginApi {
 
     private ApiResponse<List<CrossMarginAccountBook>> listCrossMarginAccountBookWithHttpInfo(String currency, Long from, Long to, Integer page, Integer limit, String type) throws ApiException {
         okhttp3.Call localVarCall = listCrossMarginAccountBookValidateBeforeCall(currency, from, to, page, limit, type, null);
-        Type localVarReturnType = new TypeToken<List<CrossMarginAccountBook>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<CrossMarginAccountBook>>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call listCrossMarginAccountBookAsync(String currency, Long from, Long to, Integer page, Integer limit, String type, final ApiCallback<List<CrossMarginAccountBook>> _callback) throws ApiException {
         okhttp3.Call localVarCall = listCrossMarginAccountBookValidateBeforeCall(currency, from, to, page, limit, type, _callback);
-        Type localVarReturnType = new TypeToken<List<CrossMarginAccountBook>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<CrossMarginAccountBook>>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -3362,6 +3419,7 @@ public class MarginApi {
 
         /**
          * Set currency
+         *
          * @param currency Filter by currency (optional)
          * @return APIlistCrossMarginAccountBookRequest
          */
@@ -3372,6 +3430,7 @@ public class MarginApi {
 
         /**
          * Set from
+         *
          * @param from Start timestamp of the query (optional)
          * @return APIlistCrossMarginAccountBookRequest
          */
@@ -3382,6 +3441,7 @@ public class MarginApi {
 
         /**
          * Set to
+         *
          * @param to Time range ending, default to current time (optional)
          * @return APIlistCrossMarginAccountBookRequest
          */
@@ -3392,6 +3452,7 @@ public class MarginApi {
 
         /**
          * Set page
+         *
          * @param page Page number (optional, default to 1)
          * @return APIlistCrossMarginAccountBookRequest
          */
@@ -3402,6 +3463,7 @@ public class MarginApi {
 
         /**
          * Set limit
+         *
          * @param limit Maximum number of records to be returned in a single list (optional, default to 100)
          * @return APIlistCrossMarginAccountBookRequest
          */
@@ -3412,6 +3474,7 @@ public class MarginApi {
 
         /**
          * Set type
+         *
          * @param type Only retrieve changes of the specified type. All types will be returned if not specified. (optional)
          * @return APIlistCrossMarginAccountBookRequest
          */
@@ -3422,14 +3485,14 @@ public class MarginApi {
 
         /**
          * Build call for listCrossMarginAccountBook
+         *
          * @param _callback ApiCallback API callback
          * @return Call to execute
          * @throws ApiException If fail to serialize the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
             return listCrossMarginAccountBookCall(currency, from, to, page, limit, type, _callback);
@@ -3437,13 +3500,13 @@ public class MarginApi {
 
         /**
          * Execute listCrossMarginAccountBook request
+         *
          * @return List&lt;CrossMarginAccountBook&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public List<CrossMarginAccountBook> execute() throws ApiException {
             ApiResponse<List<CrossMarginAccountBook>> localVarResp = listCrossMarginAccountBookWithHttpInfo(currency, from, to, page, limit, type);
@@ -3452,13 +3515,13 @@ public class MarginApi {
 
         /**
          * Execute listCrossMarginAccountBook request with HTTP info returned
+         *
          * @return ApiResponse&lt;List&lt;CrossMarginAccountBook&gt;&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public ApiResponse<List<CrossMarginAccountBook>> executeWithHttpInfo() throws ApiException {
             return listCrossMarginAccountBookWithHttpInfo(currency, from, to, page, limit, type);
@@ -3466,14 +3529,14 @@ public class MarginApi {
 
         /**
          * Execute listCrossMarginAccountBook request (asynchronously)
+         *
          * @param _callback The callback to be executed when the API call finishes
          * @return The request call
          * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<List<CrossMarginAccountBook>> _callback) throws ApiException {
             return listCrossMarginAccountBookAsync(currency, from, to, page, limit, type, _callback);
@@ -3483,12 +3546,12 @@ public class MarginApi {
     /**
      * Retrieve cross margin account change history
      * Record time range cannot exceed 30 days
+     *
      * @return APIlistCrossMarginAccountBookRequest
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public APIlistCrossMarginAccountBookRequest listCrossMarginAccountBook() {
         return new APIlistCrossMarginAccountBookRequest();
@@ -3526,7 +3589,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -3534,12 +3597,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -3557,13 +3620,15 @@ public class MarginApi {
 
     private ApiResponse<List<CrossMarginLoan>> listCrossMarginLoansWithHttpInfo(Integer status, String currency, Integer limit, Integer offset, Boolean reverse) throws ApiException {
         okhttp3.Call localVarCall = listCrossMarginLoansValidateBeforeCall(status, currency, limit, offset, reverse, null);
-        Type localVarReturnType = new TypeToken<List<CrossMarginLoan>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<CrossMarginLoan>>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call listCrossMarginLoansAsync(Integer status, String currency, Integer limit, Integer offset, Boolean reverse, final ApiCallback<List<CrossMarginLoan>> _callback) throws ApiException {
         okhttp3.Call localVarCall = listCrossMarginLoansValidateBeforeCall(status, currency, limit, offset, reverse, _callback);
-        Type localVarReturnType = new TypeToken<List<CrossMarginLoan>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<CrossMarginLoan>>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -3581,6 +3646,7 @@ public class MarginApi {
 
         /**
          * Set currency
+         *
          * @param currency Filter by currency (optional)
          * @return APIlistCrossMarginLoansRequest
          */
@@ -3591,6 +3657,7 @@ public class MarginApi {
 
         /**
          * Set limit
+         *
          * @param limit Maximum number of records to be returned in a single list (optional, default to 100)
          * @return APIlistCrossMarginLoansRequest
          */
@@ -3601,6 +3668,7 @@ public class MarginApi {
 
         /**
          * Set offset
+         *
          * @param offset List offset, starting from 0 (optional, default to 0)
          * @return APIlistCrossMarginLoansRequest
          */
@@ -3611,6 +3679,7 @@ public class MarginApi {
 
         /**
          * Set reverse
+         *
          * @param reverse Whether to sort in descending order, which is the default. Set &#x60;reverse&#x3D;false&#x60; to return ascending results (optional, default to true)
          * @return APIlistCrossMarginLoansRequest
          */
@@ -3621,14 +3690,14 @@ public class MarginApi {
 
         /**
          * Build call for listCrossMarginLoans
+         *
          * @param _callback ApiCallback API callback
          * @return Call to execute
          * @throws ApiException If fail to serialize the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
             return listCrossMarginLoansCall(status, currency, limit, offset, reverse, _callback);
@@ -3636,13 +3705,13 @@ public class MarginApi {
 
         /**
          * Execute listCrossMarginLoans request
+         *
          * @return List&lt;CrossMarginLoan&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public List<CrossMarginLoan> execute() throws ApiException {
             ApiResponse<List<CrossMarginLoan>> localVarResp = listCrossMarginLoansWithHttpInfo(status, currency, limit, offset, reverse);
@@ -3651,13 +3720,13 @@ public class MarginApi {
 
         /**
          * Execute listCrossMarginLoans request with HTTP info returned
+         *
          * @return ApiResponse&lt;List&lt;CrossMarginLoan&gt;&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public ApiResponse<List<CrossMarginLoan>> executeWithHttpInfo() throws ApiException {
             return listCrossMarginLoansWithHttpInfo(status, currency, limit, offset, reverse);
@@ -3665,14 +3734,14 @@ public class MarginApi {
 
         /**
          * Execute listCrossMarginLoans request (asynchronously)
+         *
          * @param _callback The callback to be executed when the API call finishes
          * @return The request call
          * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<List<CrossMarginLoan>> _callback) throws ApiException {
             return listCrossMarginLoansAsync(status, currency, limit, offset, reverse, _callback);
@@ -3682,13 +3751,13 @@ public class MarginApi {
     /**
      * List cross margin borrow history
      * Sort by creation time in descending order by default. Set &#x60;reverse&#x3D;false&#x60; to return ascending results.
+     *
      * @param status Filter by status. Supported values are 2 and 3. (required)
      * @return APIlistCrossMarginLoansRequest
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public APIlistCrossMarginLoansRequest listCrossMarginLoans(Integer status) {
         return new APIlistCrossMarginLoansRequest(status);
@@ -3696,15 +3765,15 @@ public class MarginApi {
 
     /**
      * Build call for createCrossMarginLoan
-     * @param crossMarginLoan  (required)
-     * @param _callback Callback for upload/download progress
+     *
+     * @param crossMarginLoan (required)
+     * @param _callback       Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully borrowed </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully borrowed </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call createCrossMarginLoanCall(CrossMarginLoan crossMarginLoan, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = crossMarginLoan;
@@ -3718,7 +3787,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -3726,12 +3795,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -3749,14 +3818,14 @@ public class MarginApi {
     /**
      * Create a cross margin borrow loan
      * Borrow amount cannot be less than currency minimum borrow amount
-     * @param crossMarginLoan  (required)
+     *
+     * @param crossMarginLoan (required)
      * @return CrossMarginLoan
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully borrowed </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully borrowed </td><td>  -  </td></tr>
+     * </table>
      */
     public CrossMarginLoan createCrossMarginLoan(CrossMarginLoan crossMarginLoan) throws ApiException {
         ApiResponse<CrossMarginLoan> localVarResp = createCrossMarginLoanWithHttpInfo(crossMarginLoan);
@@ -3766,59 +3835,61 @@ public class MarginApi {
     /**
      * Create a cross margin borrow loan
      * Borrow amount cannot be less than currency minimum borrow amount
-     * @param crossMarginLoan  (required)
+     *
+     * @param crossMarginLoan (required)
      * @return ApiResponse&lt;CrossMarginLoan&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully borrowed </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully borrowed </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<CrossMarginLoan> createCrossMarginLoanWithHttpInfo(CrossMarginLoan crossMarginLoan) throws ApiException {
         okhttp3.Call localVarCall = createCrossMarginLoanValidateBeforeCall(crossMarginLoan, null);
-        Type localVarReturnType = new TypeToken<CrossMarginLoan>(){}.getType();
+        Type localVarReturnType = new TypeToken<CrossMarginLoan>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Create a cross margin borrow loan (asynchronously)
      * Borrow amount cannot be less than currency minimum borrow amount
-     * @param crossMarginLoan  (required)
-     * @param _callback The callback to be executed when the API call finishes
+     *
+     * @param crossMarginLoan (required)
+     * @param _callback       The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully borrowed </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully borrowed </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call createCrossMarginLoanAsync(CrossMarginLoan crossMarginLoan, final ApiCallback<CrossMarginLoan> _callback) throws ApiException {
         okhttp3.Call localVarCall = createCrossMarginLoanValidateBeforeCall(crossMarginLoan, _callback);
-        Type localVarReturnType = new TypeToken<CrossMarginLoan>(){}.getType();
+        Type localVarReturnType = new TypeToken<CrossMarginLoan>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     /**
      * Build call for getCrossMarginLoan
-     * @param loanId Borrow loan ID (required)
+     *
+     * @param loanId    Borrow loan ID (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getCrossMarginLoanCall(String loanId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/margin/cross/loans/{loan_id}"
-            .replaceAll("\\{" + "loan_id" + "\\}", localVarApiClient.escapeString(loanId));
+                .replaceAll("\\{" + "loan_id" + "\\}", localVarApiClient.escapeString(loanId));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3826,7 +3897,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -3834,12 +3905,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -3856,15 +3927,14 @@ public class MarginApi {
 
     /**
      * Retrieve single borrow loan detail
-     * 
+     *
      * @param loanId Borrow loan ID (required)
      * @return CrossMarginLoan
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public CrossMarginLoan getCrossMarginLoan(String loanId) throws ApiException {
         ApiResponse<CrossMarginLoan> localVarResp = getCrossMarginLoanWithHttpInfo(loanId);
@@ -3873,38 +3943,38 @@ public class MarginApi {
 
     /**
      * Retrieve single borrow loan detail
-     * 
+     *
      * @param loanId Borrow loan ID (required)
      * @return ApiResponse&lt;CrossMarginLoan&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<CrossMarginLoan> getCrossMarginLoanWithHttpInfo(String loanId) throws ApiException {
         okhttp3.Call localVarCall = getCrossMarginLoanValidateBeforeCall(loanId, null);
-        Type localVarReturnType = new TypeToken<CrossMarginLoan>(){}.getType();
+        Type localVarReturnType = new TypeToken<CrossMarginLoan>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Retrieve single borrow loan detail (asynchronously)
-     * 
-     * @param loanId Borrow loan ID (required)
+     *
+     * @param loanId    Borrow loan ID (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getCrossMarginLoanAsync(String loanId, final ApiCallback<CrossMarginLoan> _callback) throws ApiException {
         okhttp3.Call localVarCall = getCrossMarginLoanValidateBeforeCall(loanId, _callback);
-        Type localVarReturnType = new TypeToken<CrossMarginLoan>(){}.getType();
+        Type localVarReturnType = new TypeToken<CrossMarginLoan>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -3941,7 +4011,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -3949,12 +4019,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -3967,13 +4037,15 @@ public class MarginApi {
 
     private ApiResponse<List<CrossMarginRepayment>> listCrossMarginRepaymentsWithHttpInfo(String currency, String loanId, Integer limit, Integer offset, Boolean reverse) throws ApiException {
         okhttp3.Call localVarCall = listCrossMarginRepaymentsValidateBeforeCall(currency, loanId, limit, offset, reverse, null);
-        Type localVarReturnType = new TypeToken<List<CrossMarginRepayment>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<CrossMarginRepayment>>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     private okhttp3.Call listCrossMarginRepaymentsAsync(String currency, String loanId, Integer limit, Integer offset, Boolean reverse, final ApiCallback<List<CrossMarginRepayment>> _callback) throws ApiException {
         okhttp3.Call localVarCall = listCrossMarginRepaymentsValidateBeforeCall(currency, loanId, limit, offset, reverse, _callback);
-        Type localVarReturnType = new TypeToken<List<CrossMarginRepayment>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<CrossMarginRepayment>>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -3990,7 +4062,8 @@ public class MarginApi {
 
         /**
          * Set currency
-         * @param currency  (optional)
+         *
+         * @param currency (optional)
          * @return APIlistCrossMarginRepaymentsRequest
          */
         public APIlistCrossMarginRepaymentsRequest currency(String currency) {
@@ -4000,7 +4073,8 @@ public class MarginApi {
 
         /**
          * Set loanId
-         * @param loanId  (optional)
+         *
+         * @param loanId (optional)
          * @return APIlistCrossMarginRepaymentsRequest
          */
         public APIlistCrossMarginRepaymentsRequest loanId(String loanId) {
@@ -4010,6 +4084,7 @@ public class MarginApi {
 
         /**
          * Set limit
+         *
          * @param limit Maximum number of records to be returned in a single list (optional, default to 100)
          * @return APIlistCrossMarginRepaymentsRequest
          */
@@ -4020,6 +4095,7 @@ public class MarginApi {
 
         /**
          * Set offset
+         *
          * @param offset List offset, starting from 0 (optional, default to 0)
          * @return APIlistCrossMarginRepaymentsRequest
          */
@@ -4030,6 +4106,7 @@ public class MarginApi {
 
         /**
          * Set reverse
+         *
          * @param reverse Whether to sort in descending order, which is the default. Set &#x60;reverse&#x3D;false&#x60; to return ascending results (optional, default to true)
          * @return APIlistCrossMarginRepaymentsRequest
          */
@@ -4040,14 +4117,14 @@ public class MarginApi {
 
         /**
          * Build call for listCrossMarginRepayments
+         *
          * @param _callback ApiCallback API callback
          * @return Call to execute
          * @throws ApiException If fail to serialize the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
             return listCrossMarginRepaymentsCall(currency, loanId, limit, offset, reverse, _callback);
@@ -4055,13 +4132,13 @@ public class MarginApi {
 
         /**
          * Execute listCrossMarginRepayments request
+         *
          * @return List&lt;CrossMarginRepayment&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public List<CrossMarginRepayment> execute() throws ApiException {
             ApiResponse<List<CrossMarginRepayment>> localVarResp = listCrossMarginRepaymentsWithHttpInfo(currency, loanId, limit, offset, reverse);
@@ -4070,13 +4147,13 @@ public class MarginApi {
 
         /**
          * Execute listCrossMarginRepayments request with HTTP info returned
+         *
          * @return ApiResponse&lt;List&lt;CrossMarginRepayment&gt;&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public ApiResponse<List<CrossMarginRepayment>> executeWithHttpInfo() throws ApiException {
             return listCrossMarginRepaymentsWithHttpInfo(currency, loanId, limit, offset, reverse);
@@ -4084,14 +4161,14 @@ public class MarginApi {
 
         /**
          * Execute listCrossMarginRepayments request (asynchronously)
+         *
          * @param _callback The callback to be executed when the API call finishes
          * @return The request call
          * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-         </table>
+         * @http.response.details <table summary="Response Details" border="1">
+         * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+         * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+         * </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<List<CrossMarginRepayment>> _callback) throws ApiException {
             return listCrossMarginRepaymentsAsync(currency, loanId, limit, offset, reverse, _callback);
@@ -4101,12 +4178,12 @@ public class MarginApi {
     /**
      * Retrieve cross margin repayments
      * Sort by creation time in descending order by default. Set &#x60;reverse&#x3D;false&#x60; to return ascending results.
+     *
      * @return APIlistCrossMarginRepaymentsRequest
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> List retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public APIlistCrossMarginRepaymentsRequest listCrossMarginRepayments() {
         return new APIlistCrossMarginRepaymentsRequest();
@@ -4114,15 +4191,15 @@ public class MarginApi {
 
     /**
      * Build call for repayCrossMarginLoan
-     * @param crossMarginRepayRequest  (required)
-     * @param _callback Callback for upload/download progress
+     *
+     * @param crossMarginRepayRequest (required)
+     * @param _callback               Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Loan repaid </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Loan repaid </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call repayCrossMarginLoanCall(CrossMarginRepayRequest crossMarginRepayRequest, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = crossMarginRepayRequest;
@@ -4136,7 +4213,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -4144,12 +4221,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+                "application/json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -4166,15 +4243,14 @@ public class MarginApi {
 
     /**
      * When the liquidity of the currency is insufficient and the transaction risk is high, the currency will be disabled, and funds cannot be transferred.When the available balance of cross-margin is insufficient, the balance of the spot account can be used for repayment. Please ensure that the balance of the spot account is sufficient, and system uses cross-margin account for repayment first
-     * 
-     * @param crossMarginRepayRequest  (required)
+     *
+     * @param crossMarginRepayRequest (required)
      * @return List&lt;CrossMarginLoan&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Loan repaid </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Loan repaid </td><td>  -  </td></tr>
+     * </table>
      */
     public List<CrossMarginLoan> repayCrossMarginLoan(CrossMarginRepayRequest crossMarginRepayRequest) throws ApiException {
         ApiResponse<List<CrossMarginLoan>> localVarResp = repayCrossMarginLoanWithHttpInfo(crossMarginRepayRequest);
@@ -4183,53 +4259,53 @@ public class MarginApi {
 
     /**
      * When the liquidity of the currency is insufficient and the transaction risk is high, the currency will be disabled, and funds cannot be transferred.When the available balance of cross-margin is insufficient, the balance of the spot account can be used for repayment. Please ensure that the balance of the spot account is sufficient, and system uses cross-margin account for repayment first
-     * 
-     * @param crossMarginRepayRequest  (required)
+     *
+     * @param crossMarginRepayRequest (required)
      * @return ApiResponse&lt;List&lt;CrossMarginLoan&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Loan repaid </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Loan repaid </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<List<CrossMarginLoan>> repayCrossMarginLoanWithHttpInfo(CrossMarginRepayRequest crossMarginRepayRequest) throws ApiException {
         okhttp3.Call localVarCall = repayCrossMarginLoanValidateBeforeCall(crossMarginRepayRequest, null);
-        Type localVarReturnType = new TypeToken<List<CrossMarginLoan>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<CrossMarginLoan>>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * When the liquidity of the currency is insufficient and the transaction risk is high, the currency will be disabled, and funds cannot be transferred.When the available balance of cross-margin is insufficient, the balance of the spot account can be used for repayment. Please ensure that the balance of the spot account is sufficient, and system uses cross-margin account for repayment first (asynchronously)
-     * 
-     * @param crossMarginRepayRequest  (required)
-     * @param _callback The callback to be executed when the API call finishes
+     *
+     * @param crossMarginRepayRequest (required)
+     * @param _callback               The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Loan repaid </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Loan repaid </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call repayCrossMarginLoanAsync(CrossMarginRepayRequest crossMarginRepayRequest, final ApiCallback<List<CrossMarginLoan>> _callback) throws ApiException {
         okhttp3.Call localVarCall = repayCrossMarginLoanValidateBeforeCall(crossMarginRepayRequest, _callback);
-        Type localVarReturnType = new TypeToken<List<CrossMarginLoan>>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<CrossMarginLoan>>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     /**
      * Build call for getCrossMarginTransferable
-     * @param currency Retrieve data of the specified currency (required)
+     *
+     * @param currency  Retrieve data of the specified currency (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getCrossMarginTransferableCall(String currency, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
@@ -4247,7 +4323,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -4255,12 +4331,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -4277,15 +4353,14 @@ public class MarginApi {
 
     /**
      * Get the max transferable amount for a specific cross margin currency
-     * 
+     *
      * @param currency Retrieve data of the specified currency (required)
      * @return CrossMarginTransferable
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public CrossMarginTransferable getCrossMarginTransferable(String currency) throws ApiException {
         ApiResponse<CrossMarginTransferable> localVarResp = getCrossMarginTransferableWithHttpInfo(currency);
@@ -4294,53 +4369,53 @@ public class MarginApi {
 
     /**
      * Get the max transferable amount for a specific cross margin currency
-     * 
+     *
      * @param currency Retrieve data of the specified currency (required)
      * @return ApiResponse&lt;CrossMarginTransferable&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<CrossMarginTransferable> getCrossMarginTransferableWithHttpInfo(String currency) throws ApiException {
         okhttp3.Call localVarCall = getCrossMarginTransferableValidateBeforeCall(currency, null);
-        Type localVarReturnType = new TypeToken<CrossMarginTransferable>(){}.getType();
+        Type localVarReturnType = new TypeToken<CrossMarginTransferable>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Get the max transferable amount for a specific cross margin currency (asynchronously)
-     * 
-     * @param currency Retrieve data of the specified currency (required)
+     *
+     * @param currency  Retrieve data of the specified currency (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getCrossMarginTransferableAsync(String currency, final ApiCallback<CrossMarginTransferable> _callback) throws ApiException {
         okhttp3.Call localVarCall = getCrossMarginTransferableValidateBeforeCall(currency, _callback);
-        Type localVarReturnType = new TypeToken<CrossMarginTransferable>(){}.getType();
+        Type localVarReturnType = new TypeToken<CrossMarginTransferable>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     /**
      * Build call for getCrossMarginBorrowable
-     * @param currency Retrieve data of the specified currency (required)
+     *
+     * @param currency  Retrieve data of the specified currency (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getCrossMarginBorrowableCall(String currency, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
@@ -4358,7 +4433,7 @@ public class MarginApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -4366,12 +4441,12 @@ public class MarginApi {
         }
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "apiv4" };
+        String[] localVarAuthNames = new String[]{"apiv4"};
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -4388,15 +4463,14 @@ public class MarginApi {
 
     /**
      * Get the max borrowable amount for a specific cross margin currency
-     * 
+     *
      * @param currency Retrieve data of the specified currency (required)
      * @return CrossMarginBorrowable
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public CrossMarginBorrowable getCrossMarginBorrowable(String currency) throws ApiException {
         ApiResponse<CrossMarginBorrowable> localVarResp = getCrossMarginBorrowableWithHttpInfo(currency);
@@ -4405,38 +4479,38 @@ public class MarginApi {
 
     /**
      * Get the max borrowable amount for a specific cross margin currency
-     * 
+     *
      * @param currency Retrieve data of the specified currency (required)
      * @return ApiResponse&lt;CrossMarginBorrowable&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<CrossMarginBorrowable> getCrossMarginBorrowableWithHttpInfo(String currency) throws ApiException {
         okhttp3.Call localVarCall = getCrossMarginBorrowableValidateBeforeCall(currency, null);
-        Type localVarReturnType = new TypeToken<CrossMarginBorrowable>(){}.getType();
+        Type localVarReturnType = new TypeToken<CrossMarginBorrowable>() {
+        }.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Get the max borrowable amount for a specific cross margin currency (asynchronously)
-     * 
-     * @param currency Retrieve data of the specified currency (required)
+     *
+     * @param currency  Retrieve data of the specified currency (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Successfully retrieved </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getCrossMarginBorrowableAsync(String currency, final ApiCallback<CrossMarginBorrowable> _callback) throws ApiException {
         okhttp3.Call localVarCall = getCrossMarginBorrowableValidateBeforeCall(currency, _callback);
-        Type localVarReturnType = new TypeToken<CrossMarginBorrowable>(){}.getType();
+        Type localVarReturnType = new TypeToken<CrossMarginBorrowable>() {
+        }.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

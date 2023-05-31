@@ -23,16 +23,13 @@ import java.io.IOException;
  * MarginBorrowable
  */
 public class MarginBorrowable {
-    public static final String SERIALIZED_NAME_CURRENCY = "currency";
-    @SerializedName(SERIALIZED_NAME_CURRENCY)
+    @SerializedName("currency")
     private String currency;
 
-    public static final String SERIALIZED_NAME_CURRENCY_PAIR = "currency_pair";
-    @SerializedName(SERIALIZED_NAME_CURRENCY_PAIR)
+    @SerializedName("currency_pair")
     private String currencyPair;
 
-    public static final String SERIALIZED_NAME_AMOUNT = "amount";
-    @SerializedName(SERIALIZED_NAME_AMOUNT)
+    @SerializedName(value = "amount", alternate = "borrowable")
     private String amount;
 
 
